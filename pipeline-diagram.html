@@ -6,7 +6,7 @@
 <title>Pipeline Diagram — Carousel Automation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Special+Elite&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -25,15 +25,16 @@
   --col-teal:   #4af0d8;
   --col-red:    #ff6060;
 
-  --hand: 'Caveat', cursive;
-  --mono: 'Special Elite', monospace;
+  --hand: 'Space Grotesk', sans-serif;
+  --body: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background: var(--bg);
-  font-family: var(--hand);
+  font-family: var(--body);
   color: var(--chalk);
   min-height: 100vh;
   background-image:
@@ -79,7 +80,7 @@ body {
   white-space: nowrap;
   padding-top: 4px;
   text-decoration: none;
-  font-family: var(--hand);
+  font-family: var(--body);
 }
 .back-link:hover { color: var(--chalk); }
 
@@ -125,7 +126,7 @@ body {
 .step-label {
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: .01em;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -149,11 +150,11 @@ body {
 .box {
   border: 1.5px solid;
   border-radius: 6px;
-  padding: 6px 12px;
+  padding: 5px 11px;
   font-family: var(--hand);
-  font-size: 14.5px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.4;
   background: transparent;
 }
 
@@ -184,11 +185,11 @@ body {
 }
 
 .note {
-  font-size: 13px;
-  color: rgba(232,224,208,0.82);
+  font-size: 12.5px;
+  color: rgba(232,224,208,0.78);
   margin-top: 6px;
-  line-height: 1.5;
-  font-family: var(--hand);
+  line-height: 1.6;
+  font-family: var(--body);
 }
 .note .hi { color: var(--chalk); font-weight: 600; }
 
@@ -201,7 +202,8 @@ body {
   position: relative;
 }
 .wide-block-title {
-  font-size: 15px;
+  font-family: var(--hand);
+  font-size: 14px;
   font-weight: 700;
   margin-bottom: 14px;
   text-align: center;
@@ -302,15 +304,17 @@ body {
 }
 @media(max-width:1100px){ .side-notes { display:none; } }
 .side-note {
+  font-family: var(--body);
   font-size: 12px;
   color: rgba(232,224,208,0.80);
-  line-height: 1.55;
+  line-height: 1.6;
   border-left: 2px solid rgba(232,224,208,0.45);
   padding-left: 8px;
 }
 .side-note .sn-col { font-weight: 700; }
 
 .bottom-strip {
+  font-family: var(--body);
   margin-top: 40px;
   padding-top: 16px;
   border-top: 1.5px dashed rgba(232,224,208,0.3);
@@ -488,12 +492,12 @@ body {
         <hr class="chalk-divider">
         <div style="font-size:12px;color:var(--chalk2);margin-bottom:8px">research_N.json shape</div>
         <div class="token-row">
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--hand);font-size:11px">hook</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--hand);font-size:11px">empathy_qs</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--hand);font-size:11px">key_facts × 5</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--hand);font-size:11px">misconception</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--hand);font-size:11px">tip_box</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--hand);font-size:11px">cta_text</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">hook</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">empathy_qs</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">key_facts × 5</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">misconception</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">tip_box</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">cta_text</div>
         </div>
       </div>
       <div class="note">Sources: communities in your <span class="hi">search_contexts</span> + official / health references relevant to your niche</div>
@@ -584,16 +588,16 @@ body {
         <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px 12px;margin-bottom:8px">
           <div style="font-size:11px;color:var(--chalk2);margin-bottom:8px">Card sequence (always 10)</div>
           <div class="token-row">
-            <div class="token-id" style="border-color:var(--col-yellow);color:var(--col-yellow);font-family:var(--hand);font-size:11px">01 Cover</div>
-            <div class="token-id" style="border-color:var(--col-pink);color:var(--col-pink);font-family:var(--hand);font-size:11px">02 Empathy</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">03 A</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">04 C</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">05 E</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">06 D</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">07 B</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">08 F</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--hand)">09 A</div>
-            <div class="token-id" style="border-color:var(--col-orange);color:var(--col-orange);font-family:var(--hand);font-size:11px">10 CTA</div>
+            <div class="token-id" style="border-color:var(--col-yellow);color:var(--col-yellow);font-family:var(--mono);font-size:11px">01 Cover</div>
+            <div class="token-id" style="border-color:var(--col-pink);color:var(--col-pink);font-family:var(--mono);font-size:11px">02 Empathy</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">03 A</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">04 C</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">05 E</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">06 D</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">07 B</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">08 F</div>
+            <div class="token-id" style="font-size:11px;font-family:var(--mono)">09 A</div>
+            <div class="token-id" style="border-color:var(--col-orange);color:var(--col-orange);font-family:var(--mono);font-size:11px">10 CTA</div>
           </div>
         </div>
         <div class="inner-row">
@@ -662,9 +666,9 @@ body {
       <div class="wide-block" style="border-color:rgba(255,106,173,0.25)">
         <div style="font-size:12px;color:var(--chalk2);margin-bottom:8px">Output path</div>
         <div class="token-row" style="flex-wrap:wrap;gap:5px">
-          <div class="token-id" style="font-family:var(--hand);border-color:var(--col-pink);color:var(--col-pink);font-size:11px">images/topic-slug-01.png</div>
+          <div class="token-id" style="font-family:var(--mono);border-color:var(--col-pink);color:var(--col-pink);font-size:11px">images/topic-slug-01.png</div>
           <div style="color:var(--chalk2)">···</div>
-          <div class="token-id" style="font-family:var(--hand);border-color:var(--col-pink);color:var(--col-pink);font-size:11px">images/topic-slug-10.png</div>
+          <div class="token-id" style="font-family:var(--mono);border-color:var(--col-pink);color:var(--col-pink);font-size:11px">images/topic-slug-10.png</div>
         </div>
         <div style="margin-top:6px;font-size:12px;color:var(--chalk2)">2 carousels × 10 cards = <span style="color:var(--col-pink);font-weight:700">20 PNGs</span> (1080 × 1350 px, @2x)</div>
       </div>
