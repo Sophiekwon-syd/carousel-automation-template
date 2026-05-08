@@ -140,6 +140,38 @@
 
       .card.easy .card-cta { color: var(--col-blue); }
       .card.dev .card-cta { color: var(--accent); }
+      .card.pipeline .card-cta { color: var(--col-purple); }
+
+      .pipeline-row {
+        margin-bottom: 40px;
+      }
+
+      .card.pipeline-wide {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+        padding: 24px 28px;
+        gap: 20px;
+      }
+
+      .card.pipeline-wide .card-icon {
+        font-size: 32px;
+        flex-shrink: 0;
+      }
+
+      .card.pipeline-wide .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .card.pipeline-wide h2 { font-size: 17px; }
+      .card.pipeline-wide p { font-size: 13px; }
+
+      @media (max-width: 500px) {
+        .card.pipeline-wide { flex-direction: column; align-items: flex-start; }
+      }
 
       .footer {
         font-size: 13px;
@@ -177,6 +209,16 @@
           <h2>Developer setup</h2>
           <p>Clone, configure, and run the pipeline using terminal commands.</p>
           <div class="card-cta">View guide &rarr;</div>
+        </a>
+
+        <a href="pipeline-diagram.html" class="card pipeline pipeline-wide">
+          <div class="card-icon">🔀</div>
+          <div class="card-body">
+            <div class="card-label">Reference</div>
+            <h2>Pipeline diagram</h2>
+            <p>How all 10 agents connect — from cron trigger to Git push. Step-by-step with inputs, outputs, and quality gates.</p>
+            <div class="card-cta">View diagram &rarr;</div>
+          </div>
         </a>
       </div>
 
