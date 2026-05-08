@@ -124,7 +124,7 @@ body {
 
 .step-content { flex: 1; min-width: 0; }
 .step-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .01em;
   margin-bottom: 12px;
@@ -150,9 +150,9 @@ body {
 .box {
   border: 1.5px solid;
   border-radius: 6px;
-  padding: 5px 11px;
+  padding: 6px 12px;
   font-family: var(--hand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
   background: transparent;
@@ -185,7 +185,7 @@ body {
 }
 
 .note {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: rgba(232,224,208,0.78);
   margin-top: 6px;
   line-height: 1.6;
@@ -227,7 +227,7 @@ body {
   border: 1px solid var(--col-blue);
   border-radius: 20px;
   padding: 3px 10px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--col-blue);
   font-weight: 600;
 }
@@ -241,8 +241,8 @@ body {
 .token-id {
   border: 1.5px solid var(--col-blue);
   border-radius: 4px;
-  padding: 3px 8px;
-  font-size: 13px;
+  padding: 4px 9px;
+  font-size: 12.5px;
   font-family: var(--mono);
   color: var(--col-blue);
 }
@@ -275,12 +275,14 @@ body {
 .sampling-cell {
   border: 1.5px solid;
   border-radius: 8px;
-  padding: 9px 10px;
-  font-size: 12px;
-  line-height: 1.5;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: var(--body);
+  line-height: 1.55;
 }
 .sampling-cell .sc-title {
-  font-size: 14px;
+  font-family: var(--hand);
+  font-size: 15px;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -305,7 +307,7 @@ body {
 @media(max-width:1100px){ .side-notes { display:none; } }
 .side-note {
   font-family: var(--body);
-  font-size: 12px;
+  font-size: 13px;
   color: rgba(232,224,208,0.80);
   line-height: 1.6;
   border-left: 2px solid rgba(232,224,208,0.45);
@@ -318,7 +320,7 @@ body {
   margin-top: 40px;
   padding-top: 16px;
   border-top: 1.5px dashed rgba(232,224,208,0.3);
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(232,224,208,0.78);
   line-height: 1.7;
   text-align: center;
@@ -405,7 +407,7 @@ body {
       <div class="boxes">
         <div class="box box-fill-yellow">Daily 00:00 UTC</div>
         <div class="arr">→</div>
-        <div class="box box-chalk" style="font-family:var(--mono);font-size:12px">daily-run.yml</div>
+        <div class="box box-chalk" style="font-family:var(--mono);font-size:13px">daily-run.yml</div>
         <div class="arr">→</div>
         <div class="box box-fill-yellow">claude -p "/daily-run"</div>
       </div>
@@ -427,13 +429,13 @@ body {
       <div class="boxes" style="margin-bottom:10px">
         <div class="box box-fill-orange">config.json loaded</div>
         <div class="arr">+</div>
-        <div class="box box-chalk" style="font-size:12px">CLAUDE.md + brand-rules.md</div>
+        <div class="box box-chalk" style="font-size:13px">CLAUDE.md + brand-rules.md</div>
         <div class="arr">→</div>
-        <div class="box box-chalk" style="font-size:12px">Brand rules · no-emoji · design tokens</div>
+        <div class="box box-chalk" style="font-size:13px">Brand rules · no-emoji · design tokens</div>
       </div>
       <div class="wide-block" style="border-color:rgba(232,147,90,0.3)">
         <div class="wide-block-title" style="color:var(--col-orange);font-size:13px">run-log.json initialised</div>
-        <div style="font-family:var(--mono);font-size:12px;color:rgba(232,224,208,0.88);line-height:1.8">
+        <div style="font-family:var(--mono);font-size:13px;color:rgba(232,224,208,0.88);line-height:1.8">
           { "status": <span style="color:var(--col-blue)">"running"</span>,<br>
           &nbsp;&nbsp;"started_at": <span style="color:var(--col-green)">"00:00:14Z"</span>,<br>
           &nbsp;&nbsp;"carousels_target": <span style="color:var(--col-yellow)">2</span>,<br>
@@ -454,17 +456,17 @@ body {
         <span style="color:var(--col-blue)">trend-researcher agent</span>
       </div>
       <div class="boxes" style="margin-bottom:8px">
-        <div class="box box-teal" style="font-size:12px">topic-memory.json</div>
+        <div class="box box-teal" style="font-size:13px">topic-memory.json</div>
         <div class="arr">→</div>
-        <div class="box box-chalk" style="font-size:12px">last-30-day topics passed in</div>
+        <div class="box box-chalk" style="font-size:13px">last-30-day topics passed in</div>
         <div class="arr">→</div>
-        <div class="box box-fill-blue" style="font-size:12px">web search for trends</div>
+        <div class="box box-fill-blue" style="font-size:13px">web search for trends</div>
       </div>
       <div class="boxes">
-        <div class="box box-fill-blue" style="font-size:12px">TOPIC_1</div>
-        <div class="box box-fill-blue" style="font-size:12px">TOPIC_2</div>
-        <div class="box box-fill-blue" style="font-size:12px">TOPIC_3</div>
-        <div class="box box-fill-blue" style="font-size:12px">TOPIC_4</div>
+        <div class="box box-fill-blue" style="font-size:13px">TOPIC_1</div>
+        <div class="box box-fill-blue" style="font-size:13px">TOPIC_2</div>
+        <div class="box box-fill-blue" style="font-size:13px">TOPIC_3</div>
+        <div class="box box-fill-blue" style="font-size:13px">TOPIC_4</div>
       </div>
       <div class="note">Uses <span class="hi">search_contexts</span> from config.json — topics already used in the last 30 days are automatically excluded</div>
     </div>
@@ -483,21 +485,21 @@ body {
       <div class="wide-block" style="border-color:rgba(200,136,255,0.3)">
         <div class="wide-block-title" style="color:var(--col-purple)">Runs once per selected topic</div>
         <div class="inner-row">
-          <div class="box box-purple" style="font-size:12px">TOPIC_N received</div>
+          <div class="box box-purple" style="font-size:13px">TOPIC_N received</div>
           <div class="arr">→</div>
-          <div class="box box-fill-purple" style="font-size:12px">web_search × 3-4</div>
+          <div class="box box-fill-purple" style="font-size:13px">web_search × 3-4</div>
           <div class="arr">→</div>
-          <div class="box box-fill-purple" style="font-size:12px">research_N.json returned</div>
+          <div class="box box-fill-purple" style="font-size:13px">research_N.json returned</div>
         </div>
         <hr class="chalk-divider">
-        <div style="font-size:12px;color:var(--chalk2);margin-bottom:8px">research_N.json shape</div>
+        <div style="font-size:13px;color:var(--chalk2);margin-bottom:8px">research_N.json shape</div>
         <div class="token-row">
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">hook</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">empathy_qs</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">key_facts × 5</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">misconception</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">tip_box</div>
-          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:11px">cta_text</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:12.5px">hook</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:12.5px">empathy_qs</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:12.5px">key_facts × 5</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:12.5px">misconception</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:12.5px">tip_box</div>
+          <div class="token-id" style="border-color:var(--col-purple);color:var(--col-purple);font-family:var(--mono);font-size:12.5px">cta_text</div>
         </div>
       </div>
       <div class="note">Sources: communities in your <span class="hi">search_contexts</span> + official / health references relevant to your niche</div>
@@ -515,20 +517,20 @@ body {
         <span class="seq-tag" style="margin-left:8px">sequential</span>
       </div>
       <div class="boxes" style="margin-bottom:8px">
-        <div class="box box-teal" style="font-size:12px">research_N passed in</div>
+        <div class="box box-teal" style="font-size:13px">research_N passed in</div>
         <div class="arr">→</div>
-        <div class="box box-fill-teal" style="font-size:12px">10-card narrative arc</div>
+        <div class="box box-fill-teal" style="font-size:13px">10-card narrative arc</div>
         <div class="arr">→</div>
-        <div class="box box-fill-teal" style="font-size:12px">outline_N.json returned</div>
+        <div class="box box-fill-teal" style="font-size:13px">outline_N.json returned</div>
       </div>
       <div class="wide-block" style="border-color:rgba(74,240,216,0.25)">
         <div class="wide-block-title" style="color:var(--col-teal);font-size:13px">Designs card structure (type + headline brief per card)</div>
         <div class="inner-row">
-          <div class="box box-teal" style="font-size:11px">card types: cover · empathy · body · cta</div>
-          <div class="box box-teal" style="font-size:11px">body variants: A B C D E F rotated</div>
+          <div class="box box-teal" style="font-size:12.5px">card types: cover · empathy · body · cta</div>
+          <div class="box box-teal" style="font-size:12.5px">body variants: A B C D E F rotated</div>
         </div>
         <div class="inner-row">
-          <div class="box box-teal" style="font-size:11px">arc: empathy → insight → confidence</div>
+          <div class="box box-teal" style="font-size:12.5px">arc: empathy → insight → confidence</div>
         </div>
       </div>
     </div>
@@ -545,22 +547,22 @@ body {
         <span class="seq-tag" style="margin-left:8px">sequential</span>
       </div>
       <div class="boxes" style="margin-bottom:8px">
-        <div class="box box-pink" style="font-size:12px">research_N + outline_N</div>
+        <div class="box box-pink" style="font-size:13px">research_N + outline_N</div>
         <div class="arr">→</div>
-        <div class="box box-fill-pink" style="font-size:12px">10-card copy written</div>
+        <div class="box box-fill-pink" style="font-size:13px">10-card copy written</div>
         <div class="arr">→</div>
-        <div class="box box-fill-pink" style="font-size:12px">copy_N.json returned</div>
+        <div class="box box-fill-pink" style="font-size:13px">copy_N.json returned</div>
       </div>
       <div class="wide-block" style="border-color:rgba(255,106,173,0.25)">
         <div class="inner-row">
-          <div class="box box-chalk" style="font-size:11px;border-color:var(--col-pink);color:var(--col-pink)">headline ≤ 8 words</div>
-          <div class="box box-chalk" style="font-size:11px;border-color:var(--col-pink);color:var(--col-pink)">body ≤ 30 words</div>
-          <div class="box box-chalk" style="font-size:11px;border-color:var(--col-pink);color:var(--col-pink)">tip ≤ 20 words</div>
+          <div class="box box-chalk" style="font-size:12.5px;border-color:var(--col-pink);color:var(--col-pink)">headline ≤ 8 words</div>
+          <div class="box box-chalk" style="font-size:12.5px;border-color:var(--col-pink);color:var(--col-pink)">body ≤ 30 words</div>
+          <div class="box box-chalk" style="font-size:12.5px;border-color:var(--col-pink);color:var(--col-pink)">tip ≤ 20 words</div>
         </div>
         <div class="inner-row">
-          <div class="box box-chalk" style="font-size:11px;border-color:var(--col-red);color:var(--col-red)">no emojis</div>
-          <div class="box box-chalk" style="font-size:11px;border-color:var(--col-pink);color:var(--col-pink)">language: target_audience in config.json</div>
-          <div class="box box-chalk" style="font-size:11px;border-color:var(--col-pink);color:var(--col-pink)">CTA: cta_text from config.json</div>
+          <div class="box box-chalk" style="font-size:12.5px;border-color:var(--col-red);color:var(--col-red)">no emojis</div>
+          <div class="box box-chalk" style="font-size:12.5px;border-color:var(--col-pink);color:var(--col-pink)">language: target_audience in config.json</div>
+          <div class="box box-chalk" style="font-size:12.5px;border-color:var(--col-pink);color:var(--col-pink)">CTA: cta_text from config.json</div>
         </div>
       </div>
     </div>
@@ -579,31 +581,31 @@ body {
       <div class="wide-block" style="border-color:rgba(90,200,120,0.3)">
         <div class="wide-block-title" style="color:var(--col-green)">Builds 10 HTML cards per carousel</div>
         <div class="inner-row" style="margin-bottom:12px">
-          <div class="box box-fill-green" style="font-size:12px">copy_N.json received</div>
+          <div class="box box-fill-green" style="font-size:13px">copy_N.json received</div>
           <div class="arr">→</div>
-          <div class="box box-fill-green" style="font-size:12px">html-card skill loaded</div>
+          <div class="box box-fill-green" style="font-size:13px">html-card skill loaded</div>
           <div class="arr">→</div>
-          <div class="box box-fill-green" style="font-size:12px">topic-slug.html written</div>
+          <div class="box box-fill-green" style="font-size:13px">topic-slug.html written</div>
         </div>
         <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px 12px;margin-bottom:8px">
-          <div style="font-size:11px;color:var(--chalk2);margin-bottom:8px">Card sequence (always 10)</div>
+          <div style="font-size:12.5px;color:var(--chalk2);margin-bottom:8px">Card sequence (always 10)</div>
           <div class="token-row">
-            <div class="token-id" style="border-color:var(--col-yellow);color:var(--col-yellow);font-family:var(--mono);font-size:11px">01 Cover</div>
-            <div class="token-id" style="border-color:var(--col-pink);color:var(--col-pink);font-family:var(--mono);font-size:11px">02 Empathy</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">03 A</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">04 C</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">05 E</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">06 D</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">07 B</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">08 F</div>
-            <div class="token-id" style="font-size:11px;font-family:var(--mono)">09 A</div>
-            <div class="token-id" style="border-color:var(--col-orange);color:var(--col-orange);font-family:var(--mono);font-size:11px">10 CTA</div>
+            <div class="token-id" style="border-color:var(--col-yellow);color:var(--col-yellow);font-family:var(--mono);font-size:12.5px">01 Cover</div>
+            <div class="token-id" style="border-color:var(--col-pink);color:var(--col-pink);font-family:var(--mono);font-size:12.5px">02 Empathy</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">03 A</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">04 C</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">05 E</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">06 D</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">07 B</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">08 F</div>
+            <div class="token-id" style="font-size:12.5px;font-family:var(--mono)">09 A</div>
+            <div class="token-id" style="border-color:var(--col-orange);color:var(--col-orange);font-family:var(--mono);font-size:12.5px">10 CTA</div>
           </div>
         </div>
         <div class="inner-row">
-          <div style="font-size:12px;color:var(--chalk2)">Output:</div>
-          <div class="box box-chalk" style="font-family:var(--mono);font-size:11px">topic-one.html</div>
-          <div class="box box-chalk" style="font-family:var(--mono);font-size:11px">topic-two.html</div>
+          <div style="font-size:13px;color:var(--chalk2)">Output:</div>
+          <div class="box box-chalk" style="font-family:var(--mono);font-size:12.5px">topic-one.html</div>
+          <div class="box box-chalk" style="font-family:var(--mono);font-size:12.5px">topic-two.html</div>
         </div>
       </div>
       <div class="note">1080 × 1350 px fixed — design system: .claude/skills/html-card/tokens.css</div>
@@ -618,30 +620,30 @@ body {
       <div class="step-label">
         <div class="dot" style="background:var(--col-red)"></div>
         <span style="color:var(--col-red)">qa-engineer agent</span>
-        <span style="font-size:11px;color:rgba(232,224,208,0.72);margin-left:4px">validates both HTML files</span>
+        <span style="font-size:12.5px;color:rgba(232,224,208,0.72);margin-left:4px">validates both HTML files</span>
       </div>
       <div class="sampling-grid">
         <div class="sampling-cell" style="border-color:var(--col-red)">
           <div class="sc-title" style="color:var(--col-red)">Card count</div>
-          <div style="font-size:12px;color:rgba(232,224,208,0.88)">Exactly 10 per file<br>otherwise → FAIL</div>
+          <div style="font-size:13px;color:rgba(232,224,208,0.88)">Exactly 10 per file<br>otherwise → FAIL</div>
         </div>
         <div class="sampling-cell" style="border-color:var(--col-red)">
           <div class="sc-title" style="color:var(--col-red)">Emoji check</div>
-          <div style="font-size:12px;color:rgba(232,224,208,0.88)">U+1F000+ range<br>any found → FAIL</div>
+          <div style="font-size:13px;color:rgba(232,224,208,0.88)">U+1F000+ range<br>any found → FAIL</div>
         </div>
         <div class="sampling-cell" style="border-color:var(--col-red)">
           <div class="sc-title" style="color:var(--col-red)">CTA card</div>
-          <div style="font-size:12px;color:rgba(232,224,208,0.88)">Card 10: exactly<br>one CTA button</div>
+          <div style="font-size:13px;color:rgba(232,224,208,0.88)">Card 10: exactly<br>one CTA button</div>
         </div>
         <div class="sampling-cell" style="border-color:var(--col-red)">
           <div class="sc-title" style="color:var(--col-red)">Footer</div>
-          <div style="font-size:12px;color:rgba(232,224,208,0.88)">Every card must<br>have a .sig bar</div>
+          <div style="font-size:13px;color:rgba(232,224,208,0.88)">Every card must<br>have a .sig bar</div>
         </div>
       </div>
       <div class="boxes" style="margin-top:4px">
-        <div class="box box-fill-green" style="font-size:12px">PASS → next step</div>
+        <div class="box box-fill-green" style="font-size:13px">PASS → next step</div>
         <div style="font-size:14px;color:var(--chalk2);padding:0 4px">|</div>
-        <div class="box" style="border-color:var(--col-red);color:var(--col-red);font-size:12px">FAIL → carousel-developer retries (max 1 time)</div>
+        <div class="box" style="border-color:var(--col-red);color:var(--col-red);font-size:13px">FAIL → carousel-developer retries (max 1 time)</div>
       </div>
     </div>
   </div>
@@ -654,23 +656,23 @@ body {
       <div class="step-label">
         <div class="dot" style="background:var(--col-pink)"></div>
         <span style="color:var(--col-pink)">asset-producer agent</span>
-        <span style="font-size:11px;color:rgba(232,224,208,0.72);margin-left:4px">Puppeteer screenshots</span>
+        <span style="font-size:12.5px;color:rgba(232,224,208,0.72);margin-left:4px">Puppeteer screenshots</span>
       </div>
       <div class="boxes" style="margin-bottom:8px">
-        <div class="box box-fill-pink" style="font-size:12px">HTML × 2</div>
+        <div class="box box-fill-pink" style="font-size:13px">HTML × 2</div>
         <div class="arr">→</div>
-        <div class="box box-fill-pink" style="font-size:12px">card-by-card PNG export</div>
+        <div class="box box-fill-pink" style="font-size:13px">card-by-card PNG export</div>
         <div class="arr">→</div>
-        <div class="box box-fill-pink" style="font-size:12px">20 PNGs saved</div>
+        <div class="box box-fill-pink" style="font-size:13px">20 PNGs saved</div>
       </div>
       <div class="wide-block" style="border-color:rgba(255,106,173,0.25)">
-        <div style="font-size:12px;color:var(--chalk2);margin-bottom:8px">Output path</div>
+        <div style="font-size:13px;color:var(--chalk2);margin-bottom:8px">Output path</div>
         <div class="token-row" style="flex-wrap:wrap;gap:5px">
-          <div class="token-id" style="font-family:var(--mono);border-color:var(--col-pink);color:var(--col-pink);font-size:11px">images/topic-slug-01.png</div>
+          <div class="token-id" style="font-family:var(--mono);border-color:var(--col-pink);color:var(--col-pink);font-size:12.5px">images/topic-slug-01.png</div>
           <div style="color:var(--chalk2)">···</div>
-          <div class="token-id" style="font-family:var(--mono);border-color:var(--col-pink);color:var(--col-pink);font-size:11px">images/topic-slug-10.png</div>
+          <div class="token-id" style="font-family:var(--mono);border-color:var(--col-pink);color:var(--col-pink);font-size:12.5px">images/topic-slug-10.png</div>
         </div>
-        <div style="margin-top:6px;font-size:12px;color:var(--chalk2)">2 carousels × 10 cards = <span style="color:var(--col-pink);font-weight:700">20 PNGs</span> (1080 × 1350 px, @2x)</div>
+        <div style="margin-top:6px;font-size:13px;color:var(--chalk2)">2 carousels × 10 cards = <span style="color:var(--col-pink);font-weight:700">20 PNGs</span> (1080 × 1350 px, @2x)</div>
       </div>
     </div>
   </div>
@@ -685,16 +687,16 @@ body {
         <span style="color:var(--col-orange)">Memory update + Git commit + Push</span>
       </div>
       <div class="boxes" style="margin-bottom:10px">
-        <div class="box box-fill-orange" style="font-size:12px">topic-memory.json updated</div>
+        <div class="box box-fill-orange" style="font-size:13px">topic-memory.json updated</div>
         <div class="arr">→</div>
-        <div class="box box-chalk" style="font-size:12px">2 topics + date appended</div>
+        <div class="box box-chalk" style="font-size:13px">2 topics + date appended</div>
       </div>
       <div class="boxes" style="margin-bottom:8px">
-        <div class="box box-chalk" style="font-family:var(--mono);font-size:11px">git add &lt;file&gt;</div>
+        <div class="box box-chalk" style="font-family:var(--mono);font-size:12.5px">git add &lt;file&gt;</div>
         <div class="arr">→</div>
-        <div class="box box-chalk" style="font-family:var(--mono);font-size:11px">git commit</div>
+        <div class="box box-chalk" style="font-family:var(--mono);font-size:12.5px">git commit</div>
         <div class="arr">→</div>
-        <div class="box box-fill-orange" style="font-size:12px">git push main</div>
+        <div class="box box-fill-orange" style="font-size:13px">git push main</div>
       </div>
       <div class="note"><span class="hi">One commit per file</span> — HTML, PNG folder, and run-log.json each get their own commit</div>
     </div>

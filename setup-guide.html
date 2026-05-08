@@ -104,6 +104,29 @@
         padding: 44px 24px 80px;
       }
 
+      .topnav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 32px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--ink4);
+      }
+      .topnav a {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.15s;
+      }
+      .topnav a:hover { color: var(--ink); }
+      .topnav .sep {
+        color: var(--ink4);
+        font-size: 13px;
+      }
       .header {
         margin-bottom: 40px;
         padding-bottom: 24px;
@@ -555,6 +578,13 @@
   </head>
   <body>
     <div class="page">
+      <nav class="topnav">
+        <a href="index.html">&larr; Home</a>
+        <span class="sep">/</span>
+        <a href="setup-guide-easy.html">Easy Setup</a>
+        <span class="sep">/</span>
+        <a href="pipeline-diagram.html">Pipeline Diagram</a>
+      </nav>
       <header class="header">
         <h1>Carousel Setup — <em>7 Steps</em></h1>
         <p class="header-sub">
