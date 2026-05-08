@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
@@ -33,7 +33,7 @@
         --col-orange: #ff9f5a;
         --col-teal: #3de8cc;
         --col-red: #ff5555;
-        --ui: "Plus Jakarta Sans", sans-serif;
+        --ui: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
         --mono: "JetBrains Mono", monospace;
       }
       *, *::before, *::after {
@@ -106,6 +106,34 @@
         color: var(--ink4);
         font-size: 13px;
       }
+
+      .lang-toggle {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 20px;
+        padding: 3px;
+      }
+      .lang-btn {
+        padding: 4px 10px;
+        border-radius: 16px;
+        border: none;
+        background: transparent;
+        color: rgba(232,229,224,0.45);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+        letter-spacing: 0.04em;
+        font-family: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+      }
+      .lang-btn.active {
+        background: rgba(255,255,255,0.14);
+        color: #e8e5e0;
+      }
+
       .header {
         margin-bottom: 40px;
         padding-bottom: 24px;
@@ -251,7 +279,6 @@
         line-height: 1.55;
       }
 
-      /* Chat prompt box — the key UI element for this guide */
       .chat-prompt {
         background: rgba(94, 168, 255, 0.05);
         border: 1px solid rgba(94, 168, 255, 0.25);
@@ -501,17 +528,21 @@
   <body>
     <div class="page">
       <nav class="topnav">
-        <a href="index.html">&larr; Home</a>
+        <a href="index.html" data-i18n="nav_home">← Home</a>
         <span class="sep">/</span>
-        <a href="setup-guide.html">Developer Setup</a>
+        <a href="setup-guide.html" data-i18n="nav_dev">Developer Setup</a>
         <span class="sep">/</span>
-        <a href="pipeline-diagram.html">Pipeline Diagram</a>
+        <a href="pipeline-diagram.html" data-i18n="nav_pipe">Pipeline Diagram</a>
+        <div class="lang-toggle" style="margin-left:auto">
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" data-lang="kr" onclick="setLang('kr')">KR</button>
+        </div>
       </nav>
 
       <header class="header">
-        <div class="header-badge"><i class="fa-solid fa-star"></i> No coding needed</div>
-        <h1>Set Up Your<br /><em>Carousel Factory</em></h1>
-        <p class="header-sub">
+        <div class="header-badge"><i class="fa-solid fa-star"></i> <span data-i18n="badge">No coding needed</span></div>
+        <h1 data-i18n-html="h1">Set Up Your<br /><em>Carousel Factory</em></h1>
+        <p class="header-sub" data-i18n="header_sub">
           You talk to Claude. Claude does the rest. No terminal commands to memorise.
         </p>
       </header>
@@ -519,37 +550,37 @@
       <div class="outcome-row">
         <div class="outcome-item">
           <span class="outcome-icon"><i class="fa-solid fa-images"></i></span>
-          <span class="outcome-label">20 ready-to-post<br />PNG cards</span>
+          <span class="outcome-label" data-i18n-html="oc1">20 ready-to-post<br />PNG cards</span>
         </div>
         <div class="outcome-item">
           <span class="outcome-icon"><i class="fa-solid fa-comments"></i></span>
-          <span class="outcome-label">Just copy &amp;<br />paste prompts</span>
+          <span class="outcome-label" data-i18n-html="oc2">Just copy &amp;<br />paste prompts</span>
         </div>
         <div class="outcome-item">
           <span class="outcome-icon"><i class="fa-solid fa-clock"></i></span>
-          <span class="outcome-label">~20 min<br />first run</span>
+          <span class="outcome-label" data-i18n-html="oc3">~20 min<br />first run</span>
         </div>
       </div>
 
       <section class="prereq-block">
-        <div class="prereq-title"><i class="fa-solid fa-circle-info"></i> What you need</div>
+        <div class="prereq-title"><i class="fa-solid fa-circle-info"></i> <span data-i18n="prereq_title">What you need</span></div>
         <div class="prereq-item">
           <i class="fa-solid fa-check-circle"></i>
-          <div>
+          <div data-i18n-html="prereq1">
             <strong>Claude Pro subscription — $20/month</strong>
             Sign up at <a href="https://claude.ai/pro" style="color:var(--accent)" target="_blank">claude.ai/pro</a> before starting.
           </div>
         </div>
         <div class="prereq-item">
           <i class="fa-solid fa-check-circle"></i>
-          <div>
+          <div data-i18n-html="prereq2">
             <strong>A Mac or Windows computer</strong>
             Any laptop or desktop made in the last 8 years will work.
           </div>
         </div>
         <div class="prereq-item">
           <i class="fa-solid fa-check-circle"></i>
-          <div>
+          <div data-i18n-html="prereq3">
             <strong>Node.js installed</strong>
             This is a free tool that Claude Code needs to run.
             <a href="https://nodejs.org" style="color:var(--col-blue)" target="_blank">Download the LTS version here</a>
@@ -564,18 +595,18 @@
         <div class="step-row">
           <div class="step-n" style="border-color:var(--col-pink);color:var(--col-pink)">1</div>
           <div class="step-content">
-            <div class="step-label">Install Claude Code</div>
-            <div class="step-desc">
+            <div class="step-label" data-i18n="s1_label">Install Claude Code</div>
+            <div class="step-desc" data-i18n="s1_desc">
               Claude Code is the app that runs your carousel factory. You install it once with a single command.
             </div>
             <div class="sub-steps">
               <div class="sub-step">
                 <span class="sub-step-num">1.</span>
-                <span>Open <span class="hi">Terminal</span> on Mac (Cmd+Space → type "Terminal" → Enter) or <span class="hi">PowerShell</span> on Windows (Start → type "PowerShell" → Enter).</span>
+                <span data-i18n-html="s1_sub1">Open <span class="hi">Terminal</span> on Mac (Cmd+Space → type "Terminal" → Enter) or <span class="hi">PowerShell</span> on Windows (Start → type "PowerShell" → Enter).</span>
               </div>
               <div class="sub-step">
                 <span class="sub-step-num">2.</span>
-                <span>Click the command below to copy it, then paste it in Terminal and press <span class="hi">Enter</span>.</span>
+                <span data-i18n-html="s1_sub2">Click the command below to copy it, then paste it in Terminal and press <span class="hi">Enter</span>.</span>
               </div>
             </div>
             <div class="cmd-block copyable-cmd">
@@ -584,20 +615,20 @@
             <div class="sub-steps" style="margin-top:14px">
               <div class="sub-step">
                 <span class="sub-step-num">3.</span>
-                <span>Wait for it to finish (about 30 seconds). Then type <span class="hi">claude</span> and press Enter.</span>
+                <span data-i18n-html="s1_sub3">Wait for it to finish (about 30 seconds). Then type <span class="hi">claude</span> and press Enter.</span>
               </div>
               <div class="sub-step">
                 <span class="sub-step-num">4.</span>
-                <span>Follow the login prompts — it will ask you to sign in with your Claude Pro account.</span>
+                <span data-i18n="s1_sub4">Follow the login prompts — it will ask you to sign in with your Claude Pro account.</span>
               </div>
             </div>
             <div class="tip-block" style="margin-top:14px">
               <i class="fa-solid fa-lightbulb"></i>
-              <p>Once you see a <strong>&gt;</strong> prompt inside Claude Code, you're ready for Step 2.</p>
+              <p data-i18n-html="s1_tip">Once you see a <strong>&gt;</strong> prompt inside Claude Code, you're ready for Step 2.</p>
             </div>
             <div class="warn-block">
               <i class="fa-solid fa-triangle-exclamation"></i>
-              <p>
+              <p data-i18n-html="s1_warn">
                 <strong>"npm: command not found"?</strong> Node.js is not installed yet.
                 <a href="https://nodejs.org" style="color:var(--col-blue)" target="_blank">Download Node.js (LTS)</a>,
                 run the installer, close Terminal, reopen it, then try the command again.
@@ -610,17 +641,17 @@
         <div class="step-row">
           <div class="step-n" style="border-color:var(--col-green);color:var(--col-green)">2</div>
           <div class="step-content">
-            <div class="step-label">Set Up the Project</div>
-            <div class="step-desc">
+            <div class="step-label" data-i18n="s2_label">Set Up the Project</div>
+            <div class="step-desc" data-i18n="s2_desc">
               You are now inside Claude Code. Fill in your details in the prompt below, then copy the whole thing and paste it in.
               Claude will download the template and set it up for you automatically.
             </div>
 
             <div class="chat-prompt" id="setupPrompt">
-              <div class="chat-prompt-label">
+              <div class="chat-prompt-label" data-i18n-html="s2_prompt_label">
                 <i class="fa-solid fa-message"></i> Paste this into Claude Code — fill in the <span style="color:var(--col-yellow)">yellow fields</span> first
               </div>
-              <button class="chat-copy-btn" onclick="copyPrompt('setupPrompt')">Copy</button>
+              <button class="chat-copy-btn" data-i18n="s2_copy_btn" onclick="copyPrompt('setupPrompt')">Copy</button>
               <div class="chat-prompt-body">Please set up my carousel automation project. Do this in order:
 
 1. Clone https://github.com/Sophiekwon-syd/carousel-automation-template.git into the current folder
@@ -636,14 +667,14 @@
 
             <div class="info-block">
               <i class="fa-solid fa-circle-check"></i>
-              <p>
+              <p data-i18n-html="s2_info">
                 <strong>Approve the prompts.</strong> Claude will ask for permission to access your files and run commands.
                 Click <strong>Yes</strong> or <strong>Allow</strong> each time — this is how it does the work for you.
               </p>
             </div>
             <div class="tip-block">
               <i class="fa-solid fa-lightbulb"></i>
-              <p>
+              <p data-i18n-html="s2_tip">
                 <strong>Not sure what to write?</strong> Just describe yourself naturally and Claude will figure it out. For example:
                 "I run a Korean parenting account in Australia — my handle is @aussie.umma and I post tips for Korean mums raising kids here."
               </p>
@@ -655,26 +686,26 @@
         <div class="step-row">
           <div class="step-n" style="border-color:var(--col-yellow);color:var(--col-yellow)">3</div>
           <div class="step-content">
-            <div class="step-label">Generate Your First Carousels</div>
-            <div class="step-desc">
+            <div class="step-label" data-i18n="s3_label">Generate Your First Carousels</div>
+            <div class="step-desc" data-i18n="s3_desc">
               Once Claude confirms the setup is complete, paste this command. That's the whole pipeline — research, copy, design, QA, screenshots — done automatically.
             </div>
             <div class="cmd-block copyable-cmd" style="font-size:16px;padding:14px 20px;color:var(--accent)">
               <i class="fa-regular fa-copy"></i>/daily-run
             </div>
-            <div class="note" style="margin-top:12px">
+            <div class="note" style="margin-top:12px" data-i18n-html="s3_note">
               This takes about <span class="hi">15–20 minutes</span> on your first run. You'll see progress in the terminal as it works through each stage.
             </div>
             <div class="warn-block">
               <i class="fa-solid fa-triangle-exclamation"></i>
-              <p>
+              <p data-i18n-html="s3_warn">
                 <strong>Keep clicking "Allow".</strong> Claude will ask permission to search the web, create files, and run the screenshot tool.
                 Every prompt is part of the pipeline — approve them all.
               </p>
             </div>
             <div class="tip-block">
               <i class="fa-solid fa-lightbulb"></i>
-              <p>
+              <p data-i18n-html="s3_tip">
                 <strong>Don't close the window</strong> while it's running. Leave Terminal open until you see the final summary message.
               </p>
             </div>
@@ -685,8 +716,8 @@
         <div class="step-row">
           <div class="step-n" style="border-color:var(--col-purple);color:var(--col-purple)">4</div>
           <div class="step-content">
-            <div class="step-label">Find Your Images</div>
-            <div class="step-desc">
+            <div class="step-label" data-i18n="s4_label">Find Your Images</div>
+            <div class="step-desc" data-i18n="s4_desc">
               When the run completes, your PNG cards are saved here:
             </div>
             <div class="output-tree">
@@ -699,13 +730,13 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ...<br />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── topic-name-10.png
             </div>
-            <div class="note">
+            <div class="note" data-i18n-html="s4_note">
               Open Finder (Mac) or File Explorer (Windows) and navigate to the <span class="hi">images/</span> folder.
               Upload the PNGs to Instagram in order — 01 is the cover, 10 is the CTA.
             </div>
             <div class="tip-block">
               <i class="fa-solid fa-lightbulb"></i>
-              <p>
+              <p data-i18n-html="s4_tip">
                 <strong>Want to see what a finished carousel looks like?</strong>
                 Open <span class="hi">examples/carousel-example.html</span> in your browser before running — that's the visual reference the pipeline targets.
               </p>
@@ -717,18 +748,18 @@
         <div class="step-row">
           <div class="step-n" style="border-color:var(--col-blue);color:var(--col-blue)">5</div>
           <div class="step-content">
-            <div class="step-label">Run It Every Day</div>
-            <div class="step-desc">
+            <div class="step-label" data-i18n="s5_label">Run It Every Day</div>
+            <div class="step-desc" data-i18n="s5_desc">
               From now on, generating a fresh batch of carousels takes two things: open Claude Code in the right folder, then run the command.
             </div>
             <div class="sub-steps">
               <div class="sub-step">
                 <span class="sub-step-num">1.</span>
-                <span>Open Terminal (Mac) or PowerShell (Windows).</span>
+                <span data-i18n="s5_sub1">Open Terminal (Mac) or PowerShell (Windows).</span>
               </div>
               <div class="sub-step">
                 <span class="sub-step-num">2.</span>
-                <span>Type this to open Claude Code in your project — copy, paste, Enter:</span>
+                <span data-i18n="s5_sub2">Type this to open Claude Code in your project — copy, paste, Enter:</span>
               </div>
             </div>
             <div class="cmd-block copyable-cmd">
@@ -737,18 +768,18 @@
             <div class="sub-steps" style="margin-top:4px">
               <div class="sub-step">
                 <span class="sub-step-num">3.</span>
-                <span>Once Claude Code opens, type:</span>
+                <span data-i18n="s5_sub3">Once Claude Code opens, type:</span>
               </div>
             </div>
             <div class="cmd-block copyable-cmd">
               <i class="fa-regular fa-copy"></i>/daily-run
             </div>
-            <div class="note" style="margin-top:8px">
+            <div class="note" style="margin-top:8px" data-i18n-html="s5_note">
               That's it. New carousels in your <span class="hi">outputs/</span> folder every time.
             </div>
             <div class="tip-block">
               <i class="fa-solid fa-lightbulb"></i>
-              <p>
+              <p data-i18n-html="s5_tip">
                 <strong>Folder not found?</strong> Ask Claude where it saved the project in Step 2 and use that path instead.
                 For example: <code style="font-family:var(--mono);font-size:13px">cd ~/Desktop/carousel-automation-template &amp;&amp; claude</code>
               </p>
@@ -760,18 +791,18 @@
 
       <div class="success-box">
         <i class="fa-solid fa-circle-check"></i>
-        <p>
+        <p data-i18n-html="success">
           You're set up. Run <span class="hi">/daily-run</span> any time you want a fresh batch of carousels.<br />
           New research. New copy. New designs. Every time.
         </p>
       </div>
 
       <section class="trouble-section">
-        <div class="trouble-title"><i class="fa-solid fa-wrench"></i> Something went wrong?</div>
+        <div class="trouble-title"><i class="fa-solid fa-wrench"></i> <span data-i18n="trouble_title">Something went wrong?</span></div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> "npm: command not found"</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq1">"npm: command not found"</span></div>
+          <div class="trouble-a" data-i18n-html="ta1">
             Node.js is not installed.
             <a href="https://nodejs.org" target="_blank">Download the LTS version from nodejs.org</a>,
             run the installer, close Terminal completely, reopen it, then try Step 1 again.
@@ -779,30 +810,30 @@
         </div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> Claude stopped mid-way and nothing happened</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq2">Claude stopped mid-way and nothing happened</span></div>
+          <div class="trouble-a" data-i18n-html="ta2">
             It likely hit a permission prompt and waited for you. Scroll up in the terminal window — there may be a "Yes/No" or "Allow/Deny" question. Answer it and it will continue. If it's stuck with no question, type <code>/daily-run</code> again.
           </div>
         </div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> I can't find the images folder</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq3">I can't find the images folder</span></div>
+          <div class="trouble-a" data-i18n-html="ta3">
             Ask Claude directly inside Claude Code: "Where did you save the project, and where are today's PNG files?" It will tell you the exact path and you can navigate to it in Finder or File Explorer.
           </div>
         </div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> "permission denied"</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq4">"permission denied"</span></div>
+          <div class="trouble-a" data-i18n-html="ta4">
             Mac: System Settings → Privacy &amp; Security → Full Disk Access → add Terminal.<br />
             Windows: right-click PowerShell → Run as Administrator.
           </div>
         </div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> PNG files are empty or missing</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq5">PNG files are empty or missing</span></div>
+          <div class="trouble-a" data-i18n-html="ta5">
             The screenshot tool needs a browser to be installed. Paste this in Terminal:
             <code>npx puppeteer browsers install chrome</code>
             Then go back to Claude Code and run <code>/daily-run</code> again.
@@ -810,22 +841,22 @@
         </div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> The carousels are on topics I don't want</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq6">The carousels are on topics I don't want</span></div>
+          <div class="trouble-a" data-i18n-html="ta6">
             Open Claude Code in the project folder and say: "Edit config.json — add [topic] to the topics_to_avoid list." Claude will update the file so future runs skip it.
           </div>
         </div>
 
         <div class="trouble-item">
-          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> Something else went wrong</div>
-          <div class="trouble-a">
+          <div class="trouble-q"><i class="fa-solid fa-circle-xmark"></i> <span data-i18n="tq7">Something else went wrong</span></div>
+          <div class="trouble-a" data-i18n-html="ta7">
             Just ask Claude. Describe what happened and it will work through it with you — that's what it's there for.
           </div>
         </div>
       </section>
 
       <footer class="footer">
-        <p class="note">
+        <p class="note" data-i18n-html="footer_note">
           More comfortable with Terminal and Git? See <a href="setup-guide.html">setup-guide.html</a> for the developer version.
         </p>
       </footer>
@@ -834,6 +865,154 @@
     <div class="copy-toast" id="copyToast"></div>
 
     <script>
+      var I18N = {
+        en: {
+          title: 'Easy Setup — Carousel Automation',
+          nav_home: '← Home',
+          nav_dev: 'Developer Setup',
+          nav_pipe: 'Pipeline Diagram',
+          badge: 'No coding needed',
+          h1: 'Set Up Your<br /><em>Carousel Factory</em>',
+          header_sub: 'You talk to Claude. Claude does the rest. No terminal commands to memorise.',
+          oc1: '20 ready-to-post<br />PNG cards',
+          oc2: 'Just copy &amp;<br />paste prompts',
+          oc3: '~20 min<br />first run',
+          prereq_title: 'What you need',
+          prereq1: '<strong>Claude Pro subscription — $20/month</strong> Sign up at <a href="https://claude.ai/pro" style="color:var(--accent)" target="_blank">claude.ai/pro</a> before starting.',
+          prereq2: '<strong>A Mac or Windows computer</strong> Any laptop or desktop made in the last 8 years will work.',
+          prereq3: '<strong>Node.js installed</strong> This is a free tool that Claude Code needs to run. <a href="https://nodejs.org" style="color:var(--col-blue)" target="_blank">Download the LTS version here</a> — click the big green button, run the installer, done.',
+          s1_label: 'Install Claude Code',
+          s1_desc: 'Claude Code is the app that runs your carousel factory. You install it once with a single command.',
+          s1_sub1: 'Open <span class="hi">Terminal</span> on Mac (Cmd+Space → type "Terminal" → Enter) or <span class="hi">PowerShell</span> on Windows (Start → type "PowerShell" → Enter).',
+          s1_sub2: 'Click the command below to copy it, then paste it in Terminal and press <span class="hi">Enter</span>.',
+          s1_sub3: 'Wait for it to finish (about 30 seconds). Then type <span class="hi">claude</span> and press Enter.',
+          s1_sub4: 'Follow the login prompts — it will ask you to sign in with your Claude Pro account.',
+          s1_tip: 'Once you see a <strong>&gt;</strong> prompt inside Claude Code, you\'re ready for Step 2.',
+          s1_warn: '<strong>"npm: command not found"?</strong> Node.js is not installed yet. <a href="https://nodejs.org" style="color:var(--col-blue)" target="_blank">Download Node.js (LTS)</a>, run the installer, close Terminal, reopen it, then try the command again.',
+          s2_label: 'Set Up the Project',
+          s2_desc: 'You are now inside Claude Code. Fill in your details in the prompt below, then copy the whole thing and paste it in. Claude will download the template and set it up for you automatically.',
+          s2_prompt_label: '<i class="fa-solid fa-message"></i> Paste this into Claude Code — fill in the <span style="color:var(--col-yellow)">yellow fields</span> first',
+          s2_copy_btn: 'Copy',
+          s2_info: '<strong>Approve the prompts.</strong> Claude will ask for permission to access your files and run commands. Click <strong>Yes</strong> or <strong>Allow</strong> each time — this is how it does the work for you.',
+          s2_tip: '<strong>Not sure what to write?</strong> Just describe yourself naturally and Claude will figure it out. For example: "I run a Korean parenting account in Australia — my handle is @aussie.umma and I post tips for Korean mums raising kids here."',
+          s3_label: 'Generate Your First Carousels',
+          s3_desc: 'Once Claude confirms the setup is complete, paste this command. That\'s the whole pipeline — research, copy, design, QA, screenshots — done automatically.',
+          s3_note: 'This takes about <span class="hi">15–20 minutes</span> on your first run. You\'ll see progress in the terminal as it works through each stage.',
+          s3_warn: '<strong>Keep clicking "Allow".</strong> Claude will ask permission to search the web, create files, and run the screenshot tool. Every prompt is part of the pipeline — approve them all.',
+          s3_tip: '<strong>Don\'t close the window</strong> while it\'s running. Leave Terminal open until you see the final summary message.',
+          s4_label: 'Find Your Images',
+          s4_desc: 'When the run completes, your PNG cards are saved here:',
+          s4_note: 'Open Finder (Mac) or File Explorer (Windows) and navigate to the <span class="hi">images/</span> folder. Upload the PNGs to Instagram in order — 01 is the cover, 10 is the CTA.',
+          s4_tip: '<strong>Want to see what a finished carousel looks like?</strong> Open <span class="hi">examples/carousel-example.html</span> in your browser before running — that\'s the visual reference the pipeline targets.',
+          s5_label: 'Run It Every Day',
+          s5_desc: 'From now on, generating a fresh batch of carousels takes two things: open Claude Code in the right folder, then run the command.',
+          s5_sub1: 'Open Terminal (Mac) or PowerShell (Windows).',
+          s5_sub2: 'Type this to open Claude Code in your project — copy, paste, Enter:',
+          s5_sub3: 'Once Claude Code opens, type:',
+          s5_note: 'That\'s it. New carousels in your <span class="hi">outputs/</span> folder every time.',
+          s5_tip: '<strong>Folder not found?</strong> Ask Claude where it saved the project in Step 2 and use that path instead. For example: <code style="font-family:var(--mono);font-size:13px">cd ~/Desktop/carousel-automation-template &amp;&amp; claude</code>',
+          success: 'You\'re set up. Run <span class="hi">/daily-run</span> any time you want a fresh batch of carousels.<br />New research. New copy. New designs. Every time.',
+          trouble_title: 'Something went wrong?',
+          tq1: '"npm: command not found"',
+          ta1: 'Node.js is not installed. <a href="https://nodejs.org" target="_blank">Download the LTS version from nodejs.org</a>, run the installer, close Terminal completely, reopen it, then try Step 1 again.',
+          tq2: 'Claude stopped mid-way and nothing happened',
+          ta2: 'It likely hit a permission prompt and waited for you. Scroll up in the terminal window — there may be a "Yes/No" or "Allow/Deny" question. Answer it and it will continue. If it\'s stuck with no question, type <code>/daily-run</code> again.',
+          tq3: 'I can\'t find the images folder',
+          ta3: 'Ask Claude directly inside Claude Code: "Where did you save the project, and where are today\'s PNG files?" It will tell you the exact path and you can navigate to it in Finder or File Explorer.',
+          tq4: '"permission denied"',
+          ta4: 'Mac: System Settings → Privacy &amp; Security → Full Disk Access → add Terminal.<br />Windows: right-click PowerShell → Run as Administrator.',
+          tq5: 'PNG files are empty or missing',
+          ta5: 'The screenshot tool needs a browser to be installed. Paste this in Terminal: <code>npx puppeteer browsers install chrome</code> Then go back to Claude Code and run <code>/daily-run</code> again.',
+          tq6: 'The carousels are on topics I don\'t want',
+          ta6: 'Open Claude Code in the project folder and say: "Edit config.json — add [topic] to the topics_to_avoid list." Claude will update the file so future runs skip it.',
+          tq7: 'Something else went wrong',
+          ta7: 'Just ask Claude. Describe what happened and it will work through it with you — that\'s what it\'s there for.',
+          footer_note: 'More comfortable with Terminal and Git? See <a href="setup-guide.html">setup-guide.html</a> for the developer version.',
+        },
+        kr: {
+          title: '쉬운 설치 — 캐러셀 자동화',
+          nav_home: '← 홈',
+          nav_dev: '개발자 설치',
+          nav_pipe: '파이프라인 다이어그램',
+          badge: '코딩 불필요',
+          h1: '캐러셀 팩토리<br /><em>설정하기</em>',
+          header_sub: 'Claude에게 말하세요. 나머지는 Claude가 합니다. 외울 명령어가 없어요.',
+          oc1: '바로 올릴 수 있는<br />PNG 카드 20장',
+          oc2: '복사 &amp;<br />붙여넣기만',
+          oc3: '첫 실행<br />~20분',
+          prereq_title: '필요한 것',
+          prereq1: '<strong>Claude Pro 구독 — 월 $20</strong> 시작 전에 <a href="https://claude.ai/pro" style="color:var(--accent)" target="_blank">claude.ai/pro</a>에서 가입하세요.',
+          prereq2: '<strong>Mac 또는 Windows 컴퓨터</strong> 최근 8년 내 제조된 노트북이나 데스크탑이면 됩니다.',
+          prereq3: '<strong>Node.js 설치</strong> Claude Code 실행에 필요한 무료 도구입니다. <a href="https://nodejs.org" style="color:var(--col-blue)" target="_blank">LTS 버전을 여기서 다운로드하세요</a> — 큰 초록 버튼 클릭, 설치 프로그램 실행, 완료.',
+          s1_label: 'Claude Code 설치',
+          s1_desc: 'Claude Code는 캐러셀 팩토리를 실행하는 앱입니다. 명령어 하나로 한 번만 설치하면 됩니다.',
+          s1_sub1: 'Mac에서 <span class="hi">Terminal</span> 열기 (Cmd+Space → "Terminal" 입력 → Enter) 또는 Windows에서 <span class="hi">PowerShell</span> 열기 (시작 → "PowerShell" 입력 → Enter).',
+          s1_sub2: '아래 명령어를 클릭해 복사한 후 Terminal에 붙여넣고 <span class="hi">Enter</span>를 누르세요.',
+          s1_sub3: '완료될 때까지 기다리세요 (약 30초). 그런 다음 <span class="hi">claude</span>를 입력하고 Enter를 누르세요.',
+          s1_sub4: '로그인 안내를 따르세요 — Claude Pro 계정으로 로그인하라고 할 거예요.',
+          s1_tip: 'Claude Code 안에서 <strong>&gt;</strong> 프롬프트가 보이면 2단계로 넘어갈 준비가 된 거예요.',
+          s1_warn: '<strong>"npm: command not found"?</strong> Node.js가 아직 설치되지 않았어요. <a href="https://nodejs.org" style="color:var(--col-blue)" target="_blank">Node.js (LTS) 다운로드</a> 후 설치 프로그램을 실행하고, Terminal을 닫고 다시 열어서 명령어를 다시 시도하세요.',
+          s2_label: '프로젝트 설정',
+          s2_desc: '이제 Claude Code 안에 있습니다. 아래 프롬프트에 정보를 채운 다음 전체를 복사해서 붙여넣으세요. Claude가 자동으로 템플릿을 다운로드하고 설정해줄 거예요.',
+          s2_prompt_label: '<i class="fa-solid fa-message"></i> Claude Code에 붙여넣기 — <span style="color:var(--col-yellow)">노란색 항목</span>을 먼저 채우세요',
+          s2_copy_btn: '복사',
+          s2_info: '<strong>프롬프트를 승인하세요.</strong> Claude가 파일 접근 및 명령어 실행 권한을 요청할 거예요. 매번 <strong>Yes</strong> 또는 <strong>Allow</strong>를 클릭하세요 — 이것이 Claude가 작업을 수행하는 방식이에요.',
+          s2_tip: '<strong>뭘 써야 할지 모르겠나요?</strong> 자연스럽게 자신을 설명하면 Claude가 알아서 처리합니다. 예: "저는 호주에서 한국 육아 계정을 운영합니다 — 핸들은 @aussie.umma이고, 한국 엄마들을 위한 팁을 올립니다."',
+          s3_label: '첫 캐러셀 생성',
+          s3_desc: 'Claude가 설정 완료를 확인하면 이 명령어를 붙여넣으세요. 조사, 카피, 디자인, QA, 스크린샷 — 전체 파이프라인이 자동으로 실행됩니다.',
+          s3_note: '첫 실행은 약 <span class="hi">15–20분</span> 걸립니다. 각 단계가 진행되는 동안 터미널에서 진행 상황을 볼 수 있어요.',
+          s3_warn: '<strong>"Allow"를 계속 클릭하세요.</strong> Claude가 웹 검색, 파일 생성, 스크린샷 도구 실행 권한을 요청합니다. 모든 프롬프트가 파이프라인의 일부이므로 전부 승인하세요.',
+          s3_tip: '<strong>창을 닫지 마세요</strong>. 최종 요약 메시지가 나타날 때까지 Terminal을 열어두세요.',
+          s4_label: '이미지 찾기',
+          s4_desc: '실행이 완료되면 PNG 카드가 여기에 저장됩니다:',
+          s4_note: 'Finder (Mac) 또는 File Explorer (Windows)를 열고 <span class="hi">images/</span> 폴더로 이동하세요. PNG를 순서대로 인스타그램에 업로드하세요 — 01이 커버, 10이 CTA입니다.',
+          s4_tip: '<strong>완성된 캐러셀을 미리 보고 싶나요?</strong> 실행 전에 브라우저에서 <span class="hi">examples/carousel-example.html</span>을 열어보세요 — 파이프라인이 목표로 하는 시각적 레퍼런스입니다.',
+          s5_label: '매일 실행하기',
+          s5_desc: '앞으로 새 캐러셀 배치를 생성하려면 두 가지만 하면 됩니다: 올바른 폴더에서 Claude Code를 열고 명령어를 실행하세요.',
+          s5_sub1: 'Terminal (Mac) 또는 PowerShell (Windows)을 여세요.',
+          s5_sub2: '이것을 입력해 프로젝트에서 Claude Code를 여세요 — 복사, 붙여넣기, Enter:',
+          s5_sub3: 'Claude Code가 열리면 입력하세요:',
+          s5_note: '이게 전부예요. 매번 <span class="hi">outputs/</span> 폴더에 새 캐러셀이 생성됩니다.',
+          s5_tip: '<strong>폴더를 찾을 수 없나요?</strong> Claude Code 안에서 Claude에게 물어보세요. 정확한 경로를 알려주면 Finder나 File Explorer로 이동할 수 있어요. 예: <code style="font-family:var(--mono);font-size:13px">cd ~/Desktop/carousel-automation-template &amp;&amp; claude</code>',
+          success: '설정이 완료되었습니다. 새 캐러셀이 필요할 때마다 <span class="hi">/daily-run</span>을 실행하세요.<br />새로운 조사. 새로운 카피. 새로운 디자인. 매번.',
+          trouble_title: '문제가 생겼나요?',
+          tq1: '"npm: command not found"',
+          ta1: 'Node.js가 설치되지 않았어요. <a href="https://nodejs.org" target="_blank">nodejs.org에서 LTS 버전을 다운로드하고</a>, 설치 프로그램을 실행한 뒤 Terminal을 완전히 닫고 다시 열어서 1단계를 다시 시도하세요.',
+          tq2: 'Claude가 중간에 멈추고 아무것도 안 됩니다',
+          ta2: '권한 요청 프롬프트에서 멈춘 것일 수 있어요. 터미널 창을 위로 스크롤해보세요 — "Yes/No" 또는 "Allow/Deny" 질문이 있을 수 있어요. 답하면 계속 진행됩니다. 질문 없이 멈춰있다면 <code>/daily-run</code>을 다시 입력하세요.',
+          tq3: '이미지 폴더를 찾을 수 없어요',
+          ta3: 'Claude Code 안에서 Claude에게 직접 물어보세요: "프로젝트를 어디에 저장했고, 오늘 PNG 파일은 어디에 있나요?" 정확한 경로를 알려주면 Finder나 File Explorer로 이동할 수 있어요.',
+          tq4: '"permission denied"',
+          ta4: 'Mac: 시스템 설정 → 개인 정보 보호 &amp; 보안 → 전체 디스크 접근 → Terminal 추가.<br />Windows: PowerShell 우클릭 → 관리자 권한으로 실행.',
+          tq5: 'PNG 파일이 비어있거나 없어요',
+          ta5: '스크린샷 도구에 브라우저가 필요해요. Terminal에 다음을 붙여넣으세요: <code>npx puppeteer browsers install chrome</code> 그런 다음 Claude Code로 돌아가 <code>/daily-run</code>을 다시 실행하세요.',
+          tq6: '원하지 않는 주제로 캐러셀이 만들어졌어요',
+          ta6: '프로젝트 폴더에서 Claude Code를 열고 말하세요: "config.json을 편집해서 [주제]를 topics_to_avoid 목록에 추가해줘." Claude가 파일을 업데이트하면 이후 실행에서는 해당 주제를 건너뜁니다.',
+          tq7: '다른 문제가 생겼어요',
+          ta7: '그냥 Claude에게 물어보세요. 무슨 일이 있었는지 설명하면 함께 해결해줄 거예요 — 그게 Claude가 있는 이유니까요.',
+          footer_note: '터미널과 Git에 익숙하신가요? 개발자 버전은 <a href="setup-guide.html">setup-guide.html</a>을 참고하세요.',
+        }
+      };
+
+      function setLang(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var k = el.dataset.i18n;
+          if (I18N[lang] && I18N[lang][k] !== undefined) el.textContent = I18N[lang][k];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+          var k = el.dataset.i18nHtml;
+          if (I18N[lang] && I18N[lang][k] !== undefined) el.innerHTML = I18N[lang][k];
+        });
+        if (I18N[lang] && I18N[lang].title) document.title = I18N[lang].title;
+        document.documentElement.lang = lang === 'kr' ? 'ko' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(function(b) {
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        localStorage.setItem('lang', lang);
+      }
+
+      setLang(localStorage.getItem('lang') || 'en');
+
       // Scroll-in animation
       const rows = document.querySelectorAll(".step-row");
       const obs = new IntersectionObserver(
@@ -853,8 +1032,9 @@
       // Copy command blocks
       document.querySelectorAll(".copyable-cmd").forEach((el) => {
         el.addEventListener("click", () => {
-          const text = el.innerText.replace(/^\s*\s*/, "").trim();
-          navigator.clipboard.writeText(text).then(() => showToast("Copied!"));
+          const text = el.innerText.replace(/^\s*\s*/, "").trim();
+          const lang = localStorage.getItem('lang') || 'en';
+          navigator.clipboard.writeText(text).then(() => showToast(lang === 'kr' ? '복사 완료!' : 'Copied!'));
         });
       });
 
@@ -862,7 +1042,8 @@
       function copyPrompt(id) {
         const el = document.getElementById(id).querySelector(".chat-prompt-body");
         const text = el.innerText.trim();
-        navigator.clipboard.writeText(text).then(() => showToast("Prompt copied!"));
+        const lang = localStorage.getItem('lang') || 'en';
+        navigator.clipboard.writeText(text).then(() => showToast(lang === 'kr' ? '프롬프트 복사 완료!' : 'Prompt copied!'));
       }
     </script>
   </body>
