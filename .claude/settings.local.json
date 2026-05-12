@@ -19,7 +19,8 @@
       "Bash(sed -n '/^    <style>/,/^    <\\\\/style>/p' examples/carousel-example.html)",
       "Bash(sed -n '13,524p' /Users/sophiekwon/projects/carousel-automation-template/outputs/2026-05-08/au-school-readiness.html)",
       "Bash(sed -n '13,569p' /Users/sophiekwon/projects/carousel-automation-template/examples/carousel-example.html)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(gh api *)"
     ]
   }
 }
