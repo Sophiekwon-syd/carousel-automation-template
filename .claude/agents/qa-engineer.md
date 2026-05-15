@@ -12,42 +12,57 @@ You are a QA engineer for an Instagram carousel pipeline.
 
 ## Before checking — read the reference design
 
-Read `templates/sample.html` in full. This is the canonical reference. The file you are validating must use the same CSS class system and structural patterns as sample.html. Any class, variable, or structural pattern that appears in the generated file but NOT in sample.html or `tokens.css` is an invented element and a failure.
+Read these in order before any validation:
+1. `.claude/skills/html-card/tokens.css` — authoritative CSS variables and class definitions
+2. `.claude/skills/html-card/template.html` — authoritative card shell structure
+3. `templates/sample.html` — canonical 10-card example
+
+The file you are validating must match these. Any class, variable, or structural pattern that appears in the generated file but NOT in `tokens.css` / `template.html` / `sample.html` is an invented element and a failure.
 
 ## Quality gates
 
 Read the HTML file and check every gate. A file must pass ALL gates.
 
-### Design system — cross-reference with sample.html (most critical — catch these first)
+### Design system — cross-reference with the canonical files (most critical)
 
 - [ ] **No JavaScript** — the file must contain zero `<script>` tags. Cards are static and stacked for Puppeteer, not a browser carousel.
 - [ ] **Correct fonts** — `Noto+Sans+KR` and `Space+Grotesk` must appear in a Google Fonts `<link>` tag in `<head>`. The `body` CSS must use `var(--font-kr)`, not a system font stack.
 - [ ] **No system fonts** — the strings `-apple-system`, `BlinkMacSystemFont`, `'Segoe UI'`, `Roboto`, `Oxygen`, `Ubuntu`, `Cantarell` must NOT appear anywhere in the CSS.
-- [ ] **Full CSS variable set** — ALL of these must appear in the `:root` block: `--bg`, `--card-bg`, `--elevated`, `--ink`, `--ink2`, `--ink3`, `--ink4`, `--accent`, `--accent-dim`, `--blue`, `--red`, `--border`, `--font-kr`, `--font-en`. Missing any one of these → fail.
+- [ ] **Full CSS variable set** — ALL of these must appear in the `:root` block: `--bg`, `--card-bg`, `--elevated`, `--ink`, `--ink2`, `--ink3`, `--ink4`, `--accent`, `--accent-dim`, `--blue`, `--red`, `--border`, `--font-kr`, `--font-en`, `--font-display`. Missing any one → fail.
+- [ ] **Correct token values** — `--card-bg: #080808`, `--accent: #d4ff00` (or the ACCENT_PRIMARY override), `--elevated: #0e0e0e`. If the file still uses old values like `--card-bg: #0a0a0a` or `--accent: #c6f135`, fail.
 - [ ] **Cards are static** — `.card` CSS must NOT contain `position: absolute` or `opacity: 0`. Cards must be visible and stacked vertically in document flow.
-- [ ] **Core structural classes present** — `.ci`, `.cf`, `.cf-l`, `.cf-r`, `.top`, `.handle`, `.dots`, `.top-rule` must all appear in both the CSS and the HTML, matching sample.html's structure.
-- [ ] **No invented classes** — the following class names must NOT appear anywhere in the file: `.card-content`, `.card-heading`, `.card-body`, `.card-cta`, `.card-footer`, `.carousel-container`, `.progress-dots`, `.progress`, `.dot`, `.body-content`, `.body-text`, `.body-headline`, `.definition-card`, `.cta-button`, `.slider`. These are signs the agent ignored the design system.
-- [ ] **`.cover-56` is a background watermark** — its CSS must have `font-size` of at least 400px and `opacity` ≤ 0.06. If it is styled as a small visible label (font-size < 100px), fail.
+- [ ] **Core structural classes present** — `.ci`, `.top`, `.handle`, `.dots`, `.center-block` must all appear in BOTH the CSS and the HTML.
+- [ ] **No footer remnants** — the HTML must NOT contain `<div class="cf">`, `<span class="cf-l">`, `<span class="cf-r">`, `<hr class="top-rule">`, or any page-counter text matching `\d+\s*/\s*\d+` (e.g. `03 / 10`). These belong to the old design system and have been removed.
+- [ ] **No double arrow on cover** — `<div class="cover-cta">` must contain exactly one arrow, supplied by `<span>→</span>`. The text before that span must NOT include `→` (or any other arrow character). Match-fail pattern: `class="cover-cta">[^<]*→[^<]*<span>→</span>`.
+- [ ] **`.handle` is at card level** — `.handle` must be a direct child of `.card`, NOT nested inside `.ci > .top`. The pattern `<div class="top">...<span class="handle">` is wrong.
+- [ ] **`.handle` styling** — its CSS must have `position: absolute; top: 165px; right: 90px` (so it's visible after 1:1 crop). It must include a leading dot via `::before` with `background: var(--accent)` (the live indicator).
+- [ ] **`.top` is absolute** — its CSS must have `position: absolute; top: 68px` (dots row sits in the 1:1 cropped zone).
+- [ ] **Default cards use `.center-block`** — every card that is not `.c1`, `.c2`, or `.c10` must contain a `<div class="center-block">` inside its `.ci`. The TL, TD, and body content must live inside that wrapper.
+- [ ] **No invented classes** — the following class names must NOT appear: `.card-content`, `.card-heading`, `.card-body`, `.card-cta`, `.card-footer`, `.carousel-container`, `.progress-dots`, `.progress`, `.dot`, `.body-content`, `.body-text`, `.body-headline`, `.definition-card`, `.cta-button`, `.slider`. These are signs the agent ignored the design system.
+- [ ] **`.cover-56` is a background watermark** — its CSS must have `font-size` ≥ 400px and `opacity` ≤ 0.06. If it is styled as a small visible label (font-size < 100px), fail.
 - [ ] **`.wm` is a background watermark** — its CSS must have `opacity` ≤ 0.06. If `.wm` uses `content: attr(...)` or is a tiny corner label, fail.
-- [ ] **Card shell matches sample.html** — every non-cover card must contain `.ci > .top > .handle` + `.dots`, then `hr.top-rule`, then content, then `.cf`. Cover card (`.c1`) omits `.top`/`.top-rule` and centres via `.c1 .ci`.
 
 ### Structure
+
 - [ ] Exactly `CARDS_PER_CAROUSEL` elements with class `card`
-- [ ] Every `.card` has a `.cf` footer element
-- [ ] Every `.card` except the first has a `.handle` and `.dots` element
-- [ ] The `.dots` progress indicator on each card has exactly one active dot (`.on`) matching the card's position
+- [ ] Every `.card` has exactly one `.handle` element as a direct child
+- [ ] Every `.card` except the Cover (`.c1`) has a `.top` element containing `.dots`
+- [ ] The `.dots` progress indicator on each card has exactly one active dot (`.on`) matching the card's position (card 3 → 3rd `<i>`)
+- [ ] Each `.dots` element has exactly `CARDS_PER_CAROUSEL` `<i>` children
 
 ### Dimensions
-- [ ] Every `.card` has `width: 1080px` and `height: 1350px` in the CSS
-- [ ] `.card` has `overflow: hidden`
+
+- [ ] `.card` CSS has `width: 1080px` and `height: 1350px`
+- [ ] `.card` CSS has `overflow: hidden`
 
 ### Content
+
 - [ ] No emoji characters anywhere in the HTML text content
-- [ ] No placeholder text ("Lorem ipsum", "TODO", "PLACEHOLDER", "YOUR_", "[INSERT")
-- [ ] The footer brand name and handle are present and consistent across all cards
-- [ ] Card count display in each footer (`NN / TOTAL`) matches actual card number and total
+- [ ] No placeholder text (`Lorem ipsum`, `TODO`, `PLACEHOLDER`, `YOUR_`, `[INSERT`, `[BRAND`, `[BADGE`)
+- [ ] The `.handle` text is consistent across all cards (same account name)
 
 ### Code quality
+
 - [ ] Valid HTML: `<html>`, `<head>`, `<body>` structure present
 - [ ] All CSS is inline in a `<style>` block (no external CSS files referenced except Google Fonts)
 - [ ] No broken or relative image `src` attributes (if any images are present)
@@ -65,12 +80,13 @@ If any gate fails:
   "status": "fail",
   "file": "path/to/file.html",
   "errors": [
-    "DESIGN SYSTEM: File contains <script> tag — cards must be static, no JavaScript",
-    "DESIGN SYSTEM: Font is system font, not Noto Sans KR + Space Grotesk",
-    "DESIGN SYSTEM: .card has position: absolute — cards must be statically stacked",
-    "Card count: expected 10, found 9"
+    "DESIGN SYSTEM: File contains <div class=\"cf\"> — footer removed from new design system",
+    "DESIGN SYSTEM: .handle is nested inside .ci > .top — must be direct child of .card",
+    "DESIGN SYSTEM: Card 04 is missing <div class=\"center-block\"> wrapper",
+    "DESIGN SYSTEM: --card-bg value is #0a0a0a — must be #080808",
+    "STRUCTURE: Card count: expected 10, found 9"
   ]
 }
 ```
 
-Be specific — the carousel-developer needs exact locations to fix errors efficiently. Lead with design system failures as they require a full rebuild, not a small patch.
+Be specific — the carousel-developer needs exact locations to fix errors efficiently. Lead with design-system failures as they require a full rebuild, not a small patch.
