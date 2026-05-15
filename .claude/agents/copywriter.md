@@ -96,7 +96,7 @@ Every card in your output MUST match its schema exactly. Use these field names v
 ```json
 { "card": 10, "type": "cta", "headline": "...<em>word</em>...", "message": "...<strong>key</strong>...", "comment_prompt": "..." }
 ```
-- `headline`: closing headline; wrap the accent word in `<em>` tags
+- `headline`: closing headline; wrap the accent word in `<em>` tags. **Keep it short — max 14 Korean characters or 28 English characters total, split into 2 lines.** The CTA card renders this at 84px, which fills the width quickly. Examples that fit: `당신의 건강은<br />당신이 결정합니다` (13 KR chars), `Your <em>first step</em><br />into the AI era` (28 EN chars). Examples that overflow: anything longer than 2 lines of ~7 Korean characters each.
 - `message`: 1–2 sentences; wrap the key phrase in `<strong>` tags
 - `comment_prompt`: hint text below the CTA button (e.g. "비슷한 경험이 있다면 댓글로 나눠주세요")
 - The CTA button text is always `CTA_TEXT` from config — do not include it as a field here
