@@ -13,42 +13,38 @@
     <style>
       :root {
         --bg: #050505;
-        --card-bg: #0a0a0a;
-        --elevated: #141414;
-        --ink: #f0f0f0;
-        --ink2: #aaaaaa;
-        --ink3: #666666;
+        --card-bg: #080808;
+        --elevated: #0e0e0e;
+        --ink: #ffffff;
+        --ink2: #cccccc;
+        --ink3: #888888;
         --ink4: #333333;
-        --accent: #c6f135;
-        --accent-dim: rgba(198, 241, 53, 0.1);
+        --accent: #d4ff00;
+        --accent-dim: rgba(212, 255, 0, 0.15);
         --blue: #3b82f6;
-        --red: #ef4444;
-        --border: rgba(255, 255, 255, 0.06);
+        --red: #ff4d4d;
+        --border: rgba(255, 255, 255, 0.07);
         --font-kr: "Noto Sans KR", sans-serif;
         --font-en: "Space Grotesk", sans-serif;
+        --font-display: "Space Grotesk", "Noto Sans KR", sans-serif;
       }
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
       body {
-        background: #020202;
+        background: #000;
         font-family: var(--font-kr);
         color: var(--ink);
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2px;
-        padding: 40px 20px 80px;
+        gap: 10px;
+        padding: 60px 20px 100px;
         -webkit-font-smoothing: antialiased;
       }
       .card {
         width: 1080px;
         height: 1350px;
         background: var(--card-bg);
+        background-image: radial-gradient(circle at 50% 50%, #111 0%, var(--card-bg) 70%);
         position: relative;
         overflow: hidden;
         display: flex;
@@ -60,517 +56,196 @@
         inset: 0;
         pointer-events: none;
         z-index: 50;
-        opacity: 0.03;
+        opacity: 0.05;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        background-size: 200px 200px;
+        background-size: 180px 180px;
       }
-      .ci {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 52px 68px 0;
-        position: relative;
-        z-index: 2;
-      }
-      .cf {
-        padding: 0 68px;
-        height: 68px;
-        margin-bottom: 160px;
-        border-top: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0;
-        position: relative;
-        z-index: 2;
-      }
-      .cf-l {
-        font-family: var(--font-en);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 4px;
-        color: var(--ink4);
-        text-transform: uppercase;
-      }
-      .cf-r {
-        font-family: var(--font-en);
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--ink4);
-        letter-spacing: 1px;
-      }
-      .dots {
-        display: flex;
-        gap: 6px;
-      }
-      .dots i {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--ink4);
-        display: block;
-      }
-      .dots i.on {
-        background: var(--accent);
-        width: 22px;
-        border-radius: 4px;
-      }
-      .td {
-        font-weight: 900;
-        line-height: 1.02;
-        letter-spacing: -1px;
-        word-break: keep-all;
-      }
-      .td.xl {
-        font-size: 96px;
-      }
-      .td.lg {
-        font-size: 78px;
-      }
-      .td.md {
-        font-size: 64px;
-      }
-      .tb {
-        font-size: 27px;
-        font-weight: 400;
-        color: var(--ink2);
-        line-height: 1.8;
-        word-break: keep-all;
-      }
-      .tb strong {
+      .ci { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 90px; position: relative; z-index: 2; }
+      .dots { display: flex; gap: 10px; }
+      .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--ink4); display: block; }
+      .dots i.on { background: var(--accent); width: 28px; border-radius: 4px; }
+      .td { font-family: var(--font-display); font-weight: 900; line-height: 1.05; letter-spacing: -2px; word-break: keep-all; }
+      .td.xl { font-size: 112px; }
+      .td.lg { font-size: 96px; }
+      .td.md { font-size: 84px; }
+      .tb { font-size: 30px; font-weight: 400; color: var(--ink2); line-height: 1.65; word-break: keep-all; }
+      .tb strong { font-weight: 700; color: var(--ink); }
+      .tl { font-family: var(--font-en); font-size: 14px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--ink3); margin-bottom: 32px; }
+      .ta { color: var(--accent); }
+      .tm { color: var(--ink3); }
+      .en { font-family: var(--font-en); }
+      .badge { display: inline-flex; align-items: center; padding: 12px 28px; border-radius: 100px; font-size: 17px; font-weight: 800; width: fit-content; text-transform: uppercase; letter-spacing: 2px; }
+      .badge-a { background: var(--accent); color: #000; }
+      .div-a { width: 56px; height: 5px; background: var(--accent); border-radius: 2px; border: none; margin: 32px 0; }
+      .wm { position: absolute; font-family: var(--font-en); font-weight: 700; color: var(--accent); opacity: 0.05; pointer-events: none; z-index: 1; line-height: 0.8; }
+      .glow { position: absolute; border-radius: 50%; background: var(--accent); filter: blur(160px); opacity: 0.08; pointer-events: none; z-index: 0; }
+      .top { position: absolute; top: 68px; left: 90px; right: 90px; display: flex; align-items: center; justify-content: flex-start; z-index: 5; margin: 0; }
+      .handle {
+        position: absolute;
+        top: 165px;
+        right: 90px;
+        font-size: 18px;
         font-weight: 700;
         color: var(--ink);
-      }
-      .tl {
-        font-family: var(--font-en);
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 4px;
         text-transform: uppercase;
-        color: var(--ink3);
-      }
-      .ta {
-        color: var(--accent);
-      }
-      .tm {
-        color: var(--ink3);
-      }
-      .en {
-        font-family: var(--font-en);
-      }
-      .badge {
+        letter-spacing: 3px;
+        z-index: 10;
         display: inline-flex;
         align-items: center;
-        padding: 10px 22px;
-        border-radius: 100px;
-        font-size: 16px;
-        font-weight: 700;
-        width: fit-content;
+        gap: 10px;
       }
-      .badge-a {
-        background: var(--accent);
-        color: #000;
-      }
-      .divider {
-        width: 100%;
-        height: 1px;
-        background: var(--border);
-        border: none;
-      }
-      .div-a {
-        width: 36px;
-        height: 3px;
-        background: var(--accent);
-        border-radius: 2px;
-        border: none;
-      }
-      .wm {
-        position: absolute;
-        font-family: var(--font-en);
-        font-weight: 700;
-        color: var(--accent);
-        opacity: 0.035;
-        pointer-events: none;
-        z-index: 1;
-        line-height: 1;
-      }
-      .glow {
-        position: absolute;
+      .handle::before {
+        content: "";
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: var(--accent);
-        filter: blur(100px);
-        opacity: 0.05;
-        pointer-events: none;
-        z-index: 0;
+        box-shadow: 0 0 10px var(--accent);
       }
-      .top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-shrink: 0;
-      }
-      .handle {
-        font-size: 18px;
-        font-weight: 500;
-        color: var(--ink3);
-      }
-      .top-rule {
-        width: 100%;
-        height: 1px;
-        background: var(--border);
-        margin-top: 20px;
-        flex-shrink: 0;
-      }
+      .center-block { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
-      /* ── Cover: large 56 background ── */
+      /* Cover */
       .cover-56 {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-family: var(--font-en);
-        font-size: 680px;
+        font-size: 780px;
         font-weight: 700;
         color: var(--accent);
-        opacity: 0.04;
+        opacity: 0.06;
         line-height: 1;
         pointer-events: none;
         z-index: 1;
-        letter-spacing: -20px;
+        letter-spacing: -40px;
       }
       .cover-56::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(
-          ellipse at center,
-          transparent 30%,
-          var(--card-bg) 72%
-        );
+        background: radial-gradient(ellipse at center, transparent 15%, var(--card-bg) 80%);
       }
-      .c1 .ci {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-      .c1 .cover-sub {
-        margin-bottom: 28px;
-        max-width: 75%;
-      }
-      .c1 .cover-cta {
-        font-size: 18px;
-        font-weight: 600;
-        color: var(--accent);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+      .c1 .ci { justify-content: center; align-items: center; text-align: center; }
+      .c1 .cover-sub { margin-bottom: 48px; max-width: 85%; font-size: 36px; font-weight: 500; }
+      .c1 .cover-cta { font-size: 22px; font-weight: 800; color: var(--accent); display: flex; align-items: center; gap: 14px; text-transform: uppercase; letter-spacing: 2px; }
 
       /* Hook */
-      .c2 .ci {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-      .c2 .hook-q {
-        font-size: 38px;
-        font-weight: 400;
-        color: var(--ink2);
-        line-height: 1.75;
-        word-break: keep-all;
-        max-width: 88%;
-      }
-      .c2 .hook-q strong {
-        font-weight: 700;
-        color: var(--ink);
-        font-size: 1.08em;
-      }
-      .c2 .hook-ans {
-        margin-top: 40px;
-        font-size: 20px;
-        color: var(--accent);
-        font-weight: 600;
-      }
+      .c2 .ci { justify-content: center; align-items: center; text-align: center; }
+      .c2 .hook-q { font-size: 56px; font-weight: 700; color: var(--ink); line-height: 1.35; word-break: keep-all; max-width: 92%; }
+      .c2 .hook-q strong { color: var(--accent); font-weight: 900; }
+      .c2 .hook-ans { margin-top: 56px; font-size: 26px; color: var(--accent); font-weight: 700; }
       .hook-mark {
         font-family: var(--font-en);
-        font-size: 260px;
+        font-size: 380px;
         font-weight: 700;
         color: var(--accent);
-        opacity: 0.035;
+        opacity: 0.05;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -60%);
+        transform: translate(-50%, -55%);
         line-height: 1;
         pointer-events: none;
         z-index: 0;
       }
 
       /* Definition */
-      .def-hl {
-        background: linear-gradient(
-          180deg,
-          transparent 52%,
-          var(--accent-dim) 52%
-        );
-        padding: 0 4px;
-      }
-      .def-box {
-        margin-top: 36px;
-        padding: 24px 30px;
-        border-radius: 14px;
-        background: var(--elevated);
-        border: 1px solid var(--border);
-      }
-      .def-box-text {
-        font-size: 22px;
-        color: var(--ink3);
-        line-height: 1.7;
-      }
-      .def-box-text strong {
-        color: var(--accent);
-        font-weight: 700;
-      }
+      .def-hl { background: var(--accent); color: #000; padding: 2px 14px; border-radius: 6px; display: inline-block; font-weight: 800; }
+      .def-box { margin-top: 56px; padding: 40px 48px; border-radius: 24px; background: var(--elevated); border: 1px solid var(--border); }
+      .def-box-text { font-size: 28px; color: var(--ink); line-height: 1.6; }
+      .def-box-text strong { color: var(--accent); font-weight: 700; }
 
       /* Data chips */
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 20px 0;
-      }
-      .chip {
-        padding: 10px 20px;
-        border-radius: 10px;
-        font-size: 18px;
-        font-weight: 600;
-        background: var(--elevated);
-        border: 1px solid var(--border);
-        color: var(--ink);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .chip .cd {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--accent);
-      }
+      .chips { display: flex; flex-wrap: wrap; gap: 14px; margin: 40px 0; }
+      .chip { padding: 14px 28px; border-radius: 14px; font-size: 20px; font-weight: 600; background: var(--elevated); border: 1px solid var(--border); color: var(--ink); display: flex; align-items: center; gap: 12px; }
+      .chip .cd { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
 
       /* Routine */
-      .rb {
-        display: flex;
-        gap: 20px;
-        padding: 22px 0;
-        border-bottom: 1px solid var(--border);
-        align-items: flex-start;
-      }
-      .rb:last-child {
-        border-bottom: none;
-      }
-      .rb-t {
-        font-family: var(--font-en);
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        color: var(--accent);
-        min-width: 70px;
-        padding-top: 4px;
-        text-transform: uppercase;
-      }
-      .rb-x {
-        font-size: 24px;
-        font-weight: 400;
-        color: var(--ink);
-        line-height: 1.65;
-      }
-      .rb-x strong {
-        font-weight: 700;
-      }
+      .rb { display: flex; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); align-items: center; }
+      .rb:last-child { border-bottom: none; }
+      .rb-t { font-family: var(--font-en); font-size: 17px; font-weight: 800; letter-spacing: 3px; color: var(--accent); min-width: 90px; text-transform: uppercase; }
+      .rb-x { font-size: 28px; font-weight: 500; color: var(--ink); line-height: 1.45; }
+      .rb-x strong { color: var(--accent); font-weight: 800; }
 
       /* Approaches */
       .ap {
-        padding: 26px 28px;
-        border-radius: 14px;
+        padding: 40px 44px;
+        border-radius: 28px;
         background: var(--elevated);
-        border-left: 4px solid var(--ink4);
-        margin-bottom: 12px;
+        border: 1px solid var(--border);
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
       }
-      .ap:last-child {
-        margin-bottom: 0;
-      }
-      .ap:nth-child(1) {
-        border-left-color: var(--accent);
-      }
-      .ap:nth-child(2) {
-        border-left-color: var(--blue);
-      }
-      .ap:nth-child(3) {
-        border-left-color: var(--ink3);
-      }
-      .ap-t {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      .ap-d {
-        font-size: 20px;
-        color: var(--ink2);
-        line-height: 1.6;
-      }
-
-      /* Actions */
-      .ai {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 18px 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 24px;
-        color: var(--ink);
-        line-height: 1.5;
-      }
-      .ai:last-child {
-        border-bottom: none;
-      }
-      .ai-d {
-        width: 9px;
-        height: 9px;
-        min-width: 9px;
-        border-radius: 50%;
-        background: var(--accent);
-      }
-      .takeaway {
-        margin-top: auto;
-        padding: 20px 24px;
-        border-radius: 12px;
-        background: var(--accent-dim);
-        text-align: center;
-        font-size: 22px;
-        font-weight: 700;
-        color: var(--accent);
-      }
-
-      /* Do/Don't */
-      .cg {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        flex: 1;
-      }
-      .cc {
-        border-radius: 14px;
-        padding: 28px;
-        display: flex;
-        flex-direction: column;
-      }
-      .cc.do {
-        background: rgba(198, 241, 53, 0.05);
-        border: 1px solid rgba(198, 241, 53, 0.1);
-      }
-      .cc.dn {
-        background: rgba(239, 68, 68, 0.05);
-        border: 1px solid rgba(239, 68, 68, 0.1);
-      }
-      .cc-l {
-        font-family: var(--font-en);
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 18px;
-      }
-      .cc.do .cc-l {
-        color: var(--accent);
-      }
-      .cc.dn .cc-l {
-        color: var(--red);
-      }
-      .ci-item {
-        font-size: 19px;
-        color: var(--ink2);
-        line-height: 1.6;
-        padding: 8px 0;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      .ci-item::before {
+      .ap::before {
         content: "";
+        position: absolute;
+        left: 0;
+        top: 15%;
+        bottom: 15%;
         width: 5px;
-        height: 5px;
-        min-width: 5px;
-        border-radius: 50%;
-        margin-top: 9px;
+        background: var(--ink4);
+        border-radius: 0 5px 5px 0;
       }
-      .cc.do .ci-item::before {
-        background: var(--accent);
-      }
-      .cc.dn .ci-item::before {
-        background: var(--red);
-      }
+      .ap:nth-child(1)::before { background: var(--accent); }
+      .ap:nth-child(2)::before { background: var(--blue); }
+      .ap:nth-child(3)::before { background: var(--ink3); }
+      .ap-t { font-size: 32px; font-weight: 800; margin-bottom: 14px; color: var(--ink); }
+      .ap-d { font-size: 24px; color: var(--ink2); line-height: 1.55; }
+
+      /* Actions / Checklist */
+      .ai { display: flex; align-items: center; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); font-size: 28px; font-weight: 600; color: var(--ink); }
+      .ai:last-child { border-bottom: none; }
+      .ai-d { width: 11px; height: 11px; min-width: 11px; border-radius: 50%; background: var(--accent); }
+      .takeaway { margin-top: 32px; padding: 28px 40px; border-radius: 20px; background: var(--accent-dim); text-align: center; font-size: 28px; font-weight: 900; color: var(--accent); border: 1px solid var(--accent-dim); }
+
+      /* Do/Don't Grid */
+      .cg { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+      .cc { border-radius: 24px; padding: 36px; display: flex; flex-direction: column; background: var(--elevated); border: 1px solid var(--border); }
+      .cc.do { border-top: 5px solid var(--accent); }
+      .cc.dn { border-top: 5px solid var(--red); }
+      .cc.cmp { border-top: 5px solid var(--blue); }
+      .cc-l { font-family: var(--font-en); font-size: 15px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 28px; }
+      .cc.do .cc-l { color: var(--accent); }
+      .cc.dn .cc-l { color: var(--red); }
+      .cc.cmp .cc-l { color: var(--blue); }
+      .ci-item { font-size: 22px; color: var(--ink2); line-height: 1.6; padding: 12px 0; display: flex; align-items: flex-start; gap: 14px; }
+      .ci-item::before { content: "•"; color: var(--accent); font-weight: 900; font-size: 1.3em; }
+      .cc.dn .ci-item::before { color: var(--red); }
+      .cc.cmp .ci-item::before { color: var(--blue); }
 
       /* Steps */
-      .si {
-        display: flex;
-        gap: 24px;
-        padding: 20px 0;
-        align-items: flex-start;
-      }
-      .si-n {
-        font-family: var(--font-en);
-        font-size: 48px;
-        font-weight: 700;
-        color: var(--accent);
-        opacity: 0.25;
-        line-height: 1;
-        min-width: 60px;
-      }
-      .si-c {
-        flex: 1;
-        padding-top: 2px;
-      }
-      .si-t {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 6px;
-      }
-      .si-d {
-        font-size: 19px;
-        color: var(--ink2);
-        line-height: 1.55;
-      }
+      .si { display: flex; gap: 32px; padding: 32px 0; align-items: flex-start; }
+      .si-n { font-family: var(--font-en); font-size: 64px; font-weight: 800; color: var(--accent); opacity: 0.3; line-height: 1; min-width: 80px; }
+      .si-c { flex: 1; }
+      .si-t { font-size: 32px; font-weight: 800; margin-bottom: 10px; color: var(--ink); }
+      .si-d { font-size: 24px; color: var(--ink2); line-height: 1.55; }
 
       /* CTA */
-      .c10 .ci {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
+      .c10 .ci { justify-content: center; align-items: center; text-align: center; }
       .cta-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        padding: 18px 48px;
+        gap: 16px;
+        padding: 28px 72px;
         border-radius: 100px;
         background: var(--accent);
         color: #000;
-        font-size: 20px;
-        font-weight: 800;
-        margin-top: 32px;
+        font-size: 28px;
+        font-weight: 900;
+        margin-top: 56px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
       }
-      .cta-hint {
-        margin-top: 24px;
-        font-size: 20px;
-        color: var(--ink3);
-      }
+      .cta-hint { margin-top: 40px; font-size: 22px; color: var(--ink3); }
     </style>
   </head>
   <body>
     <!-- ═══════ CARD 01 · Cover ═══════ -->
     <div class="card c1">
+      <span class="handle">@aussie.umma</span>
       <div
         class="glow"
         style="
@@ -592,33 +267,20 @@
         <div class="cover-sub tb">당신의 몸이 말하는 언어를 듣는 법</div>
         <div class="cover-cta">슬라이드 넘기기 <span>→</span></div>
       </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span>
-        <span class="cf-r en">01 / 10</span>
-      </div>
     </div>
 
     <!-- ═══════ CARD 02 · Hook ═══════ -->
     <div class="card c2">
+      <span class="handle">@aussie.umma</span>
       <div class="hook-mark">?</div>
-      <div class="ci" style="padding-top: 52px">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" />
-        <div
-          style="
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          "
-        >
+        <div class="center-block" style="align-items: center; text-align: center;">
           <div class="hook-q">
             새로운 건강 루틴을 시작해도<br /><strong
               >3주를 넘기지 못한다면?</strong
@@ -629,108 +291,90 @@
           </div>
         </div>
       </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span>
-        <span class="cf-r en">02 / 10</span>
-      </div>
     </div>
 
     <!-- ═══════ CARD 03 · Definition ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 220px; bottom: -30px; right: 20px">
         HQ
       </div>
-      <div class="ci" style="justify-content: center">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 40px" />
-        <div class="tl" style="margin-bottom: 20px">Definition</div>
-        <div class="td lg" style="margin-bottom: 10px">
-          <span class="def-hl">건강지능</span>이란
-        </div>
-        <hr class="div-a" style="margin: 24px 0" />
-        <div class="tb" style="max-width: 92%">
-          자신의 건강 상태를 <strong>정확히 파악</strong>하고, 정보를 탐색해
-          자기관리를 실천하는 역량입니다.
-        </div>
-        <div class="def-box">
-          <div class="def-box-text">
-            IQ, EQ에 이은 <strong>세 번째 지능</strong>입니다
+        <div class="center-block">
+          <div class="tl">Definition</div>
+          <div class="td md" style="margin-bottom: 10px">
+            <span class="def-hl">건강지능</span>이란
+          </div>
+          <hr class="div-a" style="margin: 24px 0" />
+          <div class="tb" style="max-width: 92%">
+            자신의 건강 상태를 <strong>정확히 파악</strong>하고, 정보를 탐색해
+            자기관리를 실천하는 역량입니다.
+          </div>
+          <div class="def-box">
+            <div class="def-box-text">
+              IQ, EQ에 이은 <strong>세 번째 지능</strong>입니다
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">03 / 10</span>
       </div>
     </div>
 
     <!-- ═══════ CARD 04 · Data ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 200px; top: 30px; right: 20px">
         04
       </div>
-      <div class="ci" style="justify-content: center">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 40px" />
-        <div class="tl" style="margin-bottom: 20px">Key Insight</div>
-        <div class="td md" style="margin-bottom: 8px">
-          데이터가<br /><span class="ta">몸의 언어</span>다
+        <div class="center-block">
+          <div class="tl">Key Insight</div>
+          <div class="td md" style="margin-bottom: 8px">
+            데이터가<br /><span class="ta">몸의 언어</span>다
+          </div>
+          <div class="chips">
+            <div class="chip"><span class="cd"></span>수면</div>
+            <div class="chip"><span class="cd"></span>활동량</div>
+            <div class="chip"><span class="cd"></span>심박수</div>
+            <div class="chip"><span class="cd"></span>혈당</div>
+          </div>
+          <div class="tb" style="margin-top: 8px">
+            이 데이터들이 모여 <strong>당신만의 건강 지도</strong>를 만듭니다. 이
+            지도를 읽고 행동으로 옮기는 것, 그것이 건강지능입니다.
+          </div>
         </div>
-        <div class="chips">
-          <div class="chip"><span class="cd"></span>수면</div>
-          <div class="chip"><span class="cd"></span>활동량</div>
-          <div class="chip"><span class="cd"></span>심박수</div>
-          <div class="chip"><span class="cd"></span>혈당</div>
-        </div>
-        <div class="tb" style="margin-top: 8px">
-          이 데이터들이 모여 <strong>당신만의 건강 지도</strong>를 만듭니다. 이
-          지도를 읽고 행동으로 옮기는 것, 그것이 건강지능입니다.
-        </div>
-      </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">04 / 10</span>
       </div>
     </div>
 
     <!-- ═══════ CARD 05 · Routine ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 200px; top: 30px; right: 20px">
         05
       </div>
-      <div class="ci" style="justify-content: center">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 40px" />
-        <div class="tl" style="margin-bottom: 20px">Daily Routine</div>
-        <div class="td md" style="margin-bottom: 32px">
-          아침부터<br />저녁까지
-        </div>
-        <div
-          style="
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          "
-        >
+        <div class="center-block">
+          <div class="tl">Daily Routine</div>
+          <div class="td md" style="margin-bottom: 32px">
+            아침부터<br />저녁까지
+          </div>
           <div class="rb">
             <span class="rb-t">AM</span
             ><span class="rb-x"
@@ -751,39 +395,26 @@
           </div>
         </div>
       </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">05 / 10</span>
-      </div>
     </div>
 
     <!-- ═══════ CARD 06 · Approaches ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 200px; top: 30px; right: 20px">
         06
       </div>
-      <div class="ci" style="justify-content: center">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 40px" />
-        <div class="tl" style="margin-bottom: 20px">Three Approaches</div>
-        <div class="td md" style="margin-bottom: 32px">
-          세 가지<br />관리 방식
-        </div>
-        <div
-          style="
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 14px;
-          "
-        >
+        <div class="center-block">
+          <div class="tl">Three Approaches</div>
+          <div class="td md" style="margin-bottom: 32px">
+            세 가지<br />관리 방식
+          </div>
           <div class="ap">
             <div class="ap-t">의료적 관리</div>
             <div class="ap-d">필요한 의약품이나 시술로 건강 개선</div>
@@ -798,119 +429,90 @@
           </div>
         </div>
       </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">06 / 10</span>
-      </div>
     </div>
 
     <!-- ═══════ CARD 07 · Small Actions ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 200px; top: 30px; right: 20px">
         07
       </div>
       <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 36px" />
-        <div class="tl" style="margin-bottom: 18px">Small Habits</div>
-        <div class="td md" style="margin-bottom: 10px">
-          작은 행동이<br /><span class="ta">모인다</span>
-        </div>
-        <p class="tb" style="margin-bottom: 24px; font-size: 23px">
-          거창한 변화보다 지속 가능한 작은 습관이 답입니다
-        </p>
-        <div
-          style="
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          "
-        >
+        <div class="center-block">
+          <div class="tl">Small Habits</div>
+          <div class="td md" style="margin-bottom: 10px">
+            작은 행동이<br /><span class="ta">모인다</span>
+          </div>
+          <p class="tb" style="margin-bottom: 12px; font-size: 23px">
+            거창한 변화보다 지속 가능한 작은 습관이 답입니다
+          </p>
           <div class="ai"><span class="ai-d"></span>아침 식사 챙기기</div>
           <div class="ai"><span class="ai-d"></span>운동 후 스트레칭</div>
           <div class="ai"><span class="ai-d"></span>자기 전 5분 명상</div>
           <div class="ai"><span class="ai-d"></span>하루 한 번 걷기</div>
+          <div class="takeaway">완벽함이 아니라 지속성</div>
         </div>
-        <div class="takeaway">완벽함이 아니라 지속성</div>
-      </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">07 / 10</span>
       </div>
     </div>
 
     <!-- ═══════ CARD 08 · Do / Don't ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 200px; top: 30px; right: 20px">
         08
       </div>
-      <div class="ci" style="justify-content: center">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i
             ><i></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 40px" />
-        <div class="tl" style="margin-bottom: 20px">Do & Don't</div>
-        <div class="td md" style="margin-bottom: 28px">
-          이렇게 vs<br />이렇게 말고
-        </div>
-        <div class="cg">
-          <div class="cc do">
-            <div class="cc-l en">Do</div>
-            <div class="ci-item">내 하루 관찰하고 기록하기</div>
-            <div class="ci-item">작은 변화에 만족하기</div>
-            <div class="ci-item">단순한 도구 사용하기</div>
+        <div class="center-block">
+          <div class="tl">Do & Don't</div>
+          <div class="td md">이렇게 vs<br />이렇게 말고</div>
+          <div class="cg">
+            <div class="cc do">
+              <div class="cc-l en">Do</div>
+              <div class="ci-item">내 하루 관찰하고 기록하기</div>
+              <div class="ci-item">작은 변화에 만족하기</div>
+              <div class="ci-item">단순한 도구 사용하기</div>
+            </div>
+            <div class="cc dn">
+              <div class="cc-l en">Don't</div>
+              <div class="ci-item">남의 루틴 무조건 따라하기</div>
+              <div class="ci-item">완벽주의 추구하기</div>
+              <div class="ci-item">복잡한 앱에 의존하기</div>
+            </div>
           </div>
-          <div class="cc dn">
-            <div class="cc-l en">Don't</div>
-            <div class="ci-item">남의 루틴 무조건 따라하기</div>
-            <div class="ci-item">완벽주의 추구하기</div>
-            <div class="ci-item">복잡한 앱에 의존하기</div>
-          </div>
         </div>
-      </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">08 / 10</span>
       </div>
     </div>
 
     <!-- ═══════ CARD 09 · Steps ═══════ -->
     <div class="card">
+      <span class="handle">@aussie.umma</span>
       <div class="wm en" style="font-size: 200px; top: 30px; right: 20px">
         09
       </div>
-      <div class="ci" style="justify-content: center">
+      <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
             ><i class="on"></i><i></i>
           </div>
         </div>
-        <hr class="top-rule" style="margin-bottom: 40px" />
-        <div class="tl" style="margin-bottom: 20px">Start Now</div>
-        <div class="td md" style="margin-bottom: 32px">
-          지금 바로<br /><span class="ta">시작하세요</span>
-        </div>
-        <div
-          style="
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          "
-        >
+        <div class="center-block">
+          <div class="tl">Start Now</div>
+          <div class="td md" style="margin-bottom: 32px">
+            지금 바로<br /><span class="ta">시작하세요</span>
+          </div>
           <div class="si">
             <span class="si-n en">01</span>
             <div class="si-c">
@@ -940,41 +542,27 @@
           </div>
         </div>
       </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">09 / 10</span>
-      </div>
     </div>
 
     <!-- ═══════ CARD 10 · CTA ═══════ -->
     <div class="card c10">
+      <span class="handle">@aussie.umma</span>
       <div
         class="glow"
         style="width: 350px; height: 350px; bottom: -80px; left: -60px"
       ></div>
       <div class="ci">
         <div class="top">
-          <span class="handle">@aussie.umma</span>
           <div class="dots">
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
             ><i class="on"></i>
           </div>
         </div>
-        <hr class="top-rule" />
-        <div
-          style="
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-          "
-        >
+        <div class="center-block" style="align-items: center; text-align: center;">
           <div class="badge badge-a en" style="margin-bottom: 28px">
             SAVE & SHARE
           </div>
-          <div class="td lg" style="text-align: center; margin-bottom: 20px">
+          <div class="td md" style="text-align: center; margin-bottom: 20px">
             당신의 건강은<br /><span class="ta">당신이</span> 결정합니다
           </div>
           <hr class="div-a" style="margin: 0 auto 24px" />
@@ -999,10 +587,6 @@
           </div>
           <p class="cta-hint">비슷한 경험이 있다면 댓글로 나눠주세요</p>
         </div>
-      </div>
-      <div class="cf">
-        <span class="cf-l">Aussie Umma</span
-        ><span class="cf-r en">10 / 10</span>
       </div>
     </div>
   </body>
