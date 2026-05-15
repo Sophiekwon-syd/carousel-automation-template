@@ -9,9 +9,9 @@ You are an HTML developer for an Instagram carousel pipeline.
 
 You MUST call your Read tool on these three files before writing a single line of HTML. Do not rely on memory — actually read them now:
 
-1. `.claude/skills/html-card/tokens.css` — paste its full contents verbatim as the `<style>` block, then override only `--accent` with ACCENT_PRIMARY and `--blue` with ACCENT_SECONDARY. `tokens.css` is the source of truth for CSS variables and class definitions — but where a class name in `tokens.css` conflicts with the name used in `template.html` or `sample.html`, the HTML files win. Use the name that appears in the HTML.
-2. `.claude/skills/html-card/template.html` — authoritative for card shell structure and component class names
-3. `templates/sample.html` — reference for layout and visual composition only; do not adopt class names from here that contradict `template.html`
+1. `.claude/skills/html-card/tokens.css` — paste its full contents verbatim as the `<style>` block, then override only `--accent` with ACCENT_PRIMARY and `--blue` with ACCENT_SECONDARY. `tokens.css` is the source of truth for CSS variables and class definitions.
+2. `.claude/skills/html-card/template.html` — authoritative for card shell structure and component class names.
+3. `templates/sample.html` — full 10-card production example. Mirror its HTML structure exactly.
 
 ## Inputs (provided by the orchestrator)
 
@@ -19,27 +19,40 @@ You MUST call your Read tool on these three files before writing a single line o
 - `RESEARCH` — the full research JSON (raw)
 - `OUTPUT_PATH` — where to write the file, e.g. `outputs/2026-05-07/carousel-01.html`
 - `ACCOUNT` — e.g. `@your.handle`
-- `BRAND_NAME` — e.g. `YOUR BRAND`
+- `BRAND_NAME` — kept for prompt compatibility; **not rendered in the card** (the only brand mark is the `.handle`)
 - `ACCENT_PRIMARY` — hex color; override `--accent` in the CSS variables
 - `ACCENT_SECONDARY` — hex color; override `--blue` in the CSS variables
-- `N_CARDS` — total card count; used for progress dots and `NN / TOTAL` footer labels
+- `N_CARDS` — total card count; used for progress dots (`.dots i` count = `N_CARDS`)
+
+## Design system — non-negotiables
+
+1. **Card size**: exactly 1080 × 1350 px per card. Ten cards stacked vertically in the body, no JavaScript.
+2. **Brand mark**: the only place the brand appears is the top-right `.handle` element. There is **NO** `.cf` footer, no `.cf-l`, no `.cf-r`, no page-count text like `01 / 10`.
+3. **Handle position**: `.handle` is a direct child of `.card` (not inside `.ci`). CSS positions it absolutely at top: 165px so it stays visible after the 1:1 Instagram profile-grid crop (visible zone y=135 to y=1215).
+4. **Dots position**: `.dots` lives inside `<div class="top">` inside `.ci`. CSS positions `.top` absolutely at top: 68px — it sits inside the 1:1 cropped zone (decorative for the 4:5 swipe view, intentionally hidden in 1:1 grid).
+5. **Content centering**: every non-c1/c2/c10 card wraps its main content (label + headline + body) in a single `<div class="center-block">` so the whole block centers at card center y=675 — exactly the 1:1 crop center.
+6. **Decorative watermarks**: `.cover-56`, `.wm`, `.hook-mark`, `.glow` exist for visual texture only. Never use them as labels — their opacity is ≤ 0.06 and font sizes are huge (≥ 200px).
 
 ## Card type → layout mapping
 
 Each card in the copy JSON has a `type` field. Build it using the corresponding layout:
 
-| type | Layout class | Components to use |
-|------|--------------|-------------------|
-| `cover` | `.c1` | `cover-56` background number, `.badge.badge-a`, `.td.xl` with `<em>` → `.ta`, `.div-a`, `.cover-sub.tb`, `.cover-cta` |
-| `hook` | `.c2` | `.hook-mark` (`?`), `.hook-q` with `<strong>`, `.hook-ans` |
-| `definition` | (default) | `.tl` section label, `.td.lg` with `.def-hl` on term, `.div-a`, `.tb` explanation, `.def-box` |
-| `data` | (default) | `.tl` section label, `.td.md` with `<em>` → `.ta`, `.chips` row of `.chip` elements, `.tb` explanation |
-| `routine` | (default) | `.tl` section label, `.td.md` headline, `.rb` rows with `.rb-t` time label + `.rb-x` text |
-| `categories` | (default) | `.tl` section label, `.td.md` headline, `.ap` panels with `.ap-t` + `.ap-d` |
-| `checklist` | (default) | `.tl` section label, `.td.md` headline, `.tb` intro, `.ai` items with `.ai-d` dot, `.takeaway` callout |
-| `do_dont` | (default) | `.tl` section label, `.td.md` headline, `.cg` grid with `.cc.do` + `.cc.dn`, `.ci-item` list items |
-| `steps` | (default) | `.tl` section label, `.td.md` headline, `.si` items with `.si-n` + `.si-c` (`.si-t` + `.si-d`) |
-| `cta` | `.c10` | `.glow`, `.badge.badge-a`, `.td.lg` headline with `<em>` → `.ta`, `.div-a`, `.tb` message, `.cta-btn` with bookmark SVG, `.cta-hint` |
+| type | Layout class | Wrap content in | Components to use |
+|------|--------------|-----------------|-------------------|
+| `cover` | `.c1` | (none — `.c1 .ci` centers) | `.cover-56` background number, `.badge.badge-a`, `.td.xl` with `<em>` → `.ta`, `.div-a`, `.cover-sub.tb`, `.cover-cta` |
+| `hook` | `.c2` | (none — `.c2 .ci` centers) | `.hook-mark` (`?`), `.hook-q` with `<strong>`, `.hook-ans` |
+| `definition` | (default) | `.center-block` | `.tl`, `.td.md` with `.def-hl` on term, `.tb` explanation, `.def-box` |
+| `data` / `insight` | (default) | `.center-block` | `.tl`, `.td.md` with `<em>` → `.ta`, `.chips` row of `.chip`, `.tb` explanation |
+| `routine` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.rb` rows with `.rb-t` time label + `.rb-x` text |
+| `categories` / `approaches` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.ap` panels with `.ap-t` + `.ap-d` |
+| `checklist` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.tb` intro, `.ai` items, `.takeaway` callout at end of block |
+| `do_dont` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.cg` grid with `.cc.do` + `.cc.dn`, `.ci-item` list items |
+| `comparison` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.cg` grid with `.cc.do` + `.cc.cmp` (blue), `.ci-item` list items |
+| `steps` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.si` items with `.si-n` + `.si-c` (`.si-t` + `.si-d`) |
+| `stat` | (default) | `.center-block` | `.tl`, `.stat-val`, `.stat-label`, `.stat-desc` |
+| `quote` | (default) | `.center-block` | `.quote` with `<strong>`, `.quote-author` |
+| `timeline` | (default) | `.center-block` | `.tl`, `.td.md` headline, `.ti` items with `.ti-body` → `.ti-year` + `.ti-title` + `.ti-desc` |
+| `cta` | `.c10` | (none — `.c10 .ci` centers) | `.glow`, `.badge.badge-a`, `.td.md` headline with `<em>` → `.ta`, `.div-a`, `.tb` message, `.cta-btn` with bookmark SVG, `.cta-hint`. **Use `.td.md` (84px), NOT `.td.lg`** — Korean CTA headlines overflow at 96px. |
 
 Render inline HTML tags from copy fields:
 - `<em>word</em>` → wrap in `<span class="ta">` for accent color
@@ -47,54 +60,56 @@ Render inline HTML tags from copy fields:
 
 ## Card shell (every card)
 
-Every card uses this structure (from template.html):
+The exact structure for a default (non-cover, non-hook, non-cta) card:
 
 ```html
-<div class="card [type-class-if-any]">
-  <!-- decorative elements: .glow or .wm if appropriate -->
+<div class="card">
+  <span class="handle">@brand.account</span>
+  <div class="wm en" style="font-size:200px;top:30px;right:20px">03</div>
   <div class="ci">
     <div class="top">
-      <span class="handle">ACCOUNT</span>
       <div class="dots">
-        <!-- one <i> per card; add class="on" to the active card only -->
-        <i></i><i class="on"></i><i></i>...
+        <i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
       </div>
     </div>
-    <hr class="top-rule" />
-    <!-- card content -->
-  </div>
-  <div class="cf">
-    <span class="cf-l">BRAND_NAME</span>
-    <span class="cf-r en">NN / TOTAL</span>
+    <div class="center-block">
+      <div class="tl">DEFINITION</div>
+      <div class="td md" style="margin-bottom:36px">…</div>
+      <!-- body components per card type -->
+    </div>
   </div>
 </div>
 ```
 
-Exception: Card 01 (`cover`) omits `.top` / `.top-rule` and centres content via `.c1 .ci`.
+Cover (`.c1`), Hook (`.c2`), and CTA (`.c10`) cards skip `.center-block` because their `.ci` already has `justify-content: center; align-items: center; text-align: center`. They contain the handle, optional decorative element, `.top` (if applicable), then content as direct children of `.ci`.
 
 ## Rules
 
 - Every card must be exactly 1080px × 1350px
-- All cards are static and stacked — do NOT use `display: none` on any card, do NOT write JavaScript of any kind. This file is screenshotted card-by-card, not rendered as a browser carousel.
-- Do NOT invent CSS class names. Use only the classes defined in tokens.css and sample.html.
+- All cards are static and stacked — do NOT use `display: none` on any card, do NOT write JavaScript of any kind. This file is screenshotted card-by-card.
+- Do NOT invent CSS class names. Use only the classes defined in `tokens.css`.
 - Do NOT hardcode color values. Use CSS variables (`var(--accent)`, `var(--card-bg)`, etc.) everywhere except the two `:root` overrides for ACCENT_PRIMARY and ACCENT_SECONDARY.
-- Include Google Fonts link for `Noto Sans KR` and `Space Grotesk` (copy from sample.html)
-- The active `.dots i.on` must match the current card number
+- Include Google Fonts link for `Noto Sans KR` and `Space Grotesk` (copy from sample.html `<head>`)
+- The active `.dots i.on` must match the current card number (card 3 → 3rd `<i>` gets `class="on"`)
 - All text comes from the COPY JSON — do not invent content
 - No emojis in any text content
+- **Do NOT render any `<div class="cf">` footer** — there is no footer in the new design system
 
-## Anti-patterns — if you find yourself writing any of these, STOP and re-read tokens.css
-
-These are exact signs of a wrong output. Check for all of them before writing the file:
+## Anti-patterns — if you find yourself writing any of these, STOP and re-read this doc
 
 | Wrong | Why it's wrong |
 |-------|----------------|
+| `<div class="cover-cta">…→ <span>→</span></div>` | Double arrow. The template already adds `<span>→</span>`. The cover-cta text must NOT contain `→` (or any other arrow). Use a plain swipe word like `Swipe`, `슬라이드 넘기기`, `Swipe to start`. |
+| `<div class="cf">` or `<span class="cf-l">` or `<span class="cf-r">` | Footer is removed from the design system |
+| `<hr class="top-rule" />` | Hidden in the new design; do not include |
+| `.handle` inside `.top` | `.handle` must be a direct child of `.card`, not nested in `.ci > .top` |
+| `flex: 1; display: flex; flex-direction: column; justify-content: center` on a wrapper inside `.ci` | Use the `.center-block` class instead; do not inline-style this |
 | `<script>` tag anywhere | Cards are static. Zero JavaScript. |
 | `.card { position: absolute }` or `.card { opacity: 0 }` | Every card must be visible in document flow |
-| `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Roboto` | System fonts. Font must be Noto Sans KR + Space Grotesk via Google Fonts. |
+| `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `Roboto` | System fonts. Use Noto Sans KR + Space Grotesk only. |
 | `display: none` on any `.card` | Puppeteer screenshots by boundingBox — hidden cards produce blank PNGs |
 | Class names `.footer`, `.progress`, `.dot`, `.body-content`, `.body-text`, `.card-container`, `.slider` | Invented classes. Not in the design system. |
-| `.cover-56` with `font-size` below 400px | It is a background watermark at 680px opacity 0.04 — not a visible label |
+| `.cover-56` with `font-size` below 400px | It is a background watermark at 780px opacity 0.06 — not a visible label |
 | `.wm` with `opacity` above 0.06 or `content: attr(...)` | It is a background watermark — not a corner label |
 | Any `nextCard()`, `prevCard()`, `showSlide()` function | JavaScript carousel pattern. Wrong. |
 
@@ -102,12 +117,15 @@ These are exact signs of a wrong output. Check for all of them before writing th
 
 After building the HTML in your head, verify each point. If any fails, fix it before writing:
 
-1. Does the `<style>` block open with `:root { --bg: #050505; --card-bg: #0a0a0a; ... }` copied from tokens.css?
+1. Does the `<style>` block open with `:root { --bg: #050505; --card-bg: #080808; --elevated: #0e0e0e; ... --accent: #d4ff00; ... }` copied verbatim from tokens.css (with only `--accent` and `--blue` overridden)?
 2. Is there a Google Fonts `<link>` for `Noto+Sans+KR` and `Space+Grotesk` in `<head>`?
-3. Does `.cover-56` have `font-size: 680px` and `opacity: 0.04`?
-4. Are ALL 10 `.card` elements visible (no `display: none`, no `opacity: 0`, no `position: absolute` on `.card`)?
-5. Is there zero `<script>` in the entire file?
-6. Do all class names appear in tokens.css or template.html — no invented names?
+3. Is every `.handle` a direct child of `.card` (not inside `.ci > .top`)?
+4. Does every default card wrap its TL + TD + body content inside a single `<div class="center-block">`?
+5. Is there ZERO `<div class="cf">` and zero page-count text (`NN / TOTAL`) anywhere?
+6. Does `.cover-56` have `font-size: 780px` and `opacity: 0.06`?
+7. Are ALL `N_CARDS` `.card` elements visible (no `display: none`, no `opacity: 0`, no `position: absolute` on `.card`)?
+8. Is there zero `<script>` in the entire file?
+9. Do all class names appear in `tokens.css` or `template.html` — no invented names?
 
 ## Output
 
